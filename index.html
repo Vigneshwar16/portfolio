@@ -1,0 +1,1699 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me</title>
+<style>
+  /* =========================
+     THEME (EDITABLE VARS)
+     ========================= */
+  :root{
+    --bg1:#071025;
+    --bg2:#0b2540;
+    --card: rgba(255,255,255,0.03);
+    --glass: rgba(255,255,255,0.04);
+    --accent1:#00a8ff;
+    --accent2:#00d4ff;
+    --accent-main:#06b6d4;
+    --accent-alt:#7c3aed;
+    --muted:#9fb1c8;
+    --text:#e6f0fb;
+    --maxwidth:1080px;
+    --radius:14px;
+  }
+
+  /* =========================
+     BASIC RESET & LAYOUT
+     ========================= */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxwidth);margin:0 auto;padding:28px;position:relative;z-index:10}
+
+  /* =========================
+     HEADER / NAV
+     ========================= */
+  header{
+    position:fixed;left:0;right:0;top:0;z-index:60;
+    display:flex;align-items:center;justify-content:space-between;padding:14px 28px;
+    background:linear-gradient(180deg, rgba(6,10,18,0.35), rgba(6,10,18,0.12));
+    backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.02)
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent-main),var(--accent-alt));
+        display:flex;align-items:center;justify-content:center;font-weight:800;color:#021023}
+  nav{display:flex;gap:14px;align-items:center}
+  nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px;font-weight:700}
+  nav a.active,nav a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+
+  /* ====== SLIDING UNDERLINE EFFECT ====== */
+  .slide-underline { position: relative; display: inline-block; text-decoration: none; }
+  .slide-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background: var(--accent-main); /* fixed: use --accent-main */
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.28s ease;
+  }
+  .slide-underline:hover::after { transform: scaleX(1); }
+
+  /* =========================
+     HERO
+     ========================= */
+  .hero{min-height:86vh;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding-top:88px}
+  .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:800;margin-bottom:16px}
+  h1{font-size:44px;margin:0 0 12px 0;line-height:1.02}
+  .lead{color:var(--muted);max-width:60ch;font-size:16px}
+  .cta{margin-top:18px;display:flex;gap:12px}
+  .btn{padding:10px 14px;border-radius:12px;font-weight:800;text-decoration:none;border:1px solid rgba(255,255,255,0.04);display:inline-flex;align-items:center;gap:10px}
+  .btn.primary{background:linear-gradient(90deg,var(--accent-main),var(--accent-alt));color:#021023;border:none;box-shadow:0 8px 30px rgba(2,6,23,0.5)}
+
+  .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .avatar{width:100%;height:360px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#06203a,#021022);display:flex;align-items:center;justify-content:center}
+  .meta{display:flex;justify-content:space-between;padding-top:12px;color:var(--muted);font-weight:700}
+
+  /* =========================
+     SECTIONS
+     ========================= */
+  section{padding:80px 0}
+  .section-card{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .two-col{display:grid;grid-template-columns:1fr 380px;gap:22px}
+  .skills{display:flex;flex-wrap:wrap;gap:10px}
+  .skill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:800}
+
+  /* projects */
+  .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .card{padding:16px;border-radius:12px;position:relative;border:1px solid rgba(255,255,255,0.02);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transition:transform .25s, box-shadow .25s}
+  .card:hover{transform:translateY(-10px);box-shadow:0 24px 60px rgba(2,6,23,0.6)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s}
+  .reveal.show{opacity:1;transform:none}
+
+  /* =========================
+     CONTACT (TARGETED STYLE YOU WANTED)
+     ========================= */
+  .contact-wrap{
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    padding:48px 20px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
+    text-align:center;
+  }
+
+  .contact-title{
+    font-size:56px; font-weight:800; margin:0 0 18px 0;
+    background: linear-gradient(90deg,var(--accent1),var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .contact-sub{
+    color:var(--muted); font-size:20px; margin-bottom:28px;
+  }
+
+  /* social icons row (big circles) */
+  .social-row{display:flex;gap:22px;justify-content:center;align-items:center;margin-bottom:26px;flex-wrap:wrap}
+  .social-btn{
+    width:92px;height:92px;border-radius:999px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;
+    box-shadow:inset 0 -6px 18px rgba(0,0,0,0.25);transition:transform .22s, box-shadow .22s;
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .social-btn:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 20px 50px rgba(2,6,23,0.6)}
+  .social-icon{width:40px;height:40px;display:block;fill:var(--text);opacity:0.96}
+
+  /* footer block style like image */
+  .contact-footer{
+    background:#060607;padding:36px 20px;margin-top:18px;border-top:1px solid rgba(255,255,255,0.02);
+    text-align:center;color:var(--muted);
+  }
+  .contact-footer h4{color:var(--text);font-weight:700;margin:0 0 18px 0}
+  .tiny-icons{display:flex;gap:14px;justify-content:center;margin-top:18px;align-items:center}
+  .tiny-btn{width:36px;height:36px;border-radius:8px;background:transparent;display:flex;align-items:center;justify-content:center; border:1px solid rgba(255,255,255,0.04)}
+  .tiny-icon{width:18px;height:18px;fill:var(--text)}
+
+  /* responsive tweaks */
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr;gap:18px}
+    .projects-grid{grid-template-columns:1fr}
+    .two-col{grid-template-columns:1fr}
+    .social-btn{width:72px;height:72px}
+    .contact-title{font-size:44px}
+  }
+  @media (max-width:520px){
+    .contact-title{font-size:36px}
+    .social-btn{width:64px;height:64px}
+    .social-icon{width:28px;height:28px}
+  }
+
+  /* Project modal (single copy) */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 50px;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+  }
+
+  .modal-content {
+    background: var(--bg2);
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 700px;
+    color: var(--text);
+  }
+
+  .close {
+    color: var(--muted);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .close:hover {
+    color: var(--accent-main);
+  }
+
+  /* simple hide class for the blur wrapper */
+  .hide-blur {
+    display: none !important;
+  }
+
+.hide-blur {
+  display: none !important;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- wrapper for blurred elements + particles -->
+  <div id="blur-header">
+    <!-- subtle decorative blobs -->
+    <div style="position:fixed;left:-120px;top:-60px;width:320px;height:320px;border-radius:999px;filter:blur(36px);background:linear-gradient(90deg,var(--accent-main),var(--accent-alt));opacity:0.6;z-index:2"></div>
+
+    <!-- particle canvas (light) -->
+    <canvas id="particles" style="position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0.12"></canvas>
+  </div>
+
+  <!-- NAV -->
+  <!-- NAV -->
+<!-- NAV -->
+<header>
+  <div class="brand">
+    <div class="logo">
+      <div class="frame">
+        <img src="Vigneshwar Photo.JPG" alt="Vigneshwar Photo">
+      </div>
+    </div>
+    <div>
+      <div style="font-weight:800">Vigneshwar M</div>
+      <div style="font-size:12px;color:var(--muted)">Full Stack Developer • Software Curious</div>
+    </div>
+  </div>
+
+
+<style>
+.frame {
+    width: 120px;  /* Adjust based on your design */
+    height: 65px;
+    padding: 4px;
+    background: linear-gradient(to bottom, #0d47a1, #673ab7);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+</style>
+
+
+
+    <nav>
+       <a href="#about" class="nav-link slide-underline">About</a>
+       <a href="#about" class="nav-link slide-underline">Skills</a>
+       <a href="#projects" class="nav-link slide-underline">Projects</a>
+       <a href="#certs" class="nav-link slide-underline">Certifications</a>
+       <a href="#contact" class="nav-link slide-underline">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div>
+        <span class="eyebrow">Open to roles • Actively learning software</span>
+        <h1>Bridging infra & software Writing clean code</h1>
+        <p class="lead">I’m Vigneshwar M — an Electronics and Communication Engineering graduate with hands-on experience in embedded systems, Sensor Integration and IoT. Bridging embedded systems and full-stack development to create real-world solutions. I build small, reliable tools and document everything. I like pragmatic solutions that scale.</p>
+
+        <div class="cta">
+          <a class="btn primary" href="https://drive.google.com/file/d/1_pvK1g1d4_aryKCmOXvQFO1U32MozVMh/view?usp=sharing" download>📄 Download Resume</a>
+          <a class="btn" href="#projects">View Projects</a>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <div class="skill">Front-end Development</div>
+          <div class="skill">Django</div>
+          <div class="skill">Python</div>
+          <div class="skill">Embedded</div>
+          <div class="skill">MongoDB</div>
+          <div class="skill">DSA</div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="avatar">
+          <img src="Namma photo.jpg" >
+        </div>
+        <div class="meta">
+          <div>
+            <div style="font-weight:800">Vigneshwar M</div>
+            <div style="color:var(--muted);font-weight:700;font-size:13px">Coimbatore, India</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:800">Open to opportunities</div>
+            <div style="color:var(--muted);font-weight:700;font-size:13px">Graduation 2025</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <div class="two-col">
+        <div>
+          <h2>About</h2>
+          <div class="section-card">
+            <p style="color:var(--muted)">I’m Vigneshwar M — part problem-solver, part tech tinkerer.
+I build things that talk, think, and react — from voice-controlled medical devices to terrain-smart EV controllers.
+Whether it’s Python scripts, IoT prototypes, or full-stack apps, I turn ideas into tools that work in the real world.
+When I’m not debugging, you’ll find me experimenting with new tech stacks or improving old projects — because good enough is never good enough.</p>
+</p>
+
+
+
+            <h3 style="margin-top:14px">Experience highlights</h3>
+            <ul style="color:var(--muted);margin:8px 0 0 18px">
+              <li>Intern — Embedded & IoT at <b>Enthu Technology Solutions</b> — sensors, dashboards, automation features.</li>
+              <li>Network fundamentals (VLAN, LoRa, OSPF, BGP), exposure to Embedded Firmwares, Sensors Integration & monitoring tools.</li>
+              <li>Python automation scripts for device backups and health checks.</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside>
+          <h2>Skills</h2>
+          <div class="section-card" style="display:flex;flex-direction:column;gap:12px">
+            <div class="skills">
+              <div class="skill">Python</div>
+              <div class="skill">C</div>
+              <div class="skill">HTML/CSS/JS</div>
+              <div class="skill">Microsoft Azure</div>
+              <div class="skill">Git</div>
+              <div class="skill">Backend Development</div>
+              <div class="skill">Embedded Programming</div>
+            </div>
+
+            <div style="margin-top:6px;color:var(--muted);font-weight:700">Education</div>
+            <div style="font-weight:800">B.E. — Electronics & Communication</div>
+            <div style="color:var(--muted);font-size:13px">Sri Ramakrishna Engineering College — 2021–2025</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <h2>Projects</h2>
+      <div style="margin-top:14px" class="projects-grid">
+        <!-- >>> EDIT: COPY THIS BLOCK to add more projects -->
+       <article class="card project-card" data-modal="factorysafetyModal">
+          <img src="factory safety.jpg" style="border-radius:8px; margin-bottom:12px;">
+          <h3>Intelligent factory safety and emergency response system using LabVIEW</h3>
+          <p style="color:var(--muted)"></p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="skill" style="padding:6px 10px;font-size:13px">Machine Learning</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">LABVIEW</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Firebase</span>
+          </div>
+        </article>
+
+        <article class="card project-card" data-modal="voice-controlledModal">
+          <img src="Voice control.gif" style="border-radius:8px; margin-bottom:12px;">
+          <h3>Voice Control Based Syringe Infusion Pump</h3>
+          <p style="color:var(--muted)"></p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="skill" style="padding:6px 10px;font-size:13px">Arduino UNO</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Voice Command Integration</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Embedded C</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Voltage Regulators</span>
+          </div>
+        </article>
+
+        <article class="card project-card" data-modal="SpeedControlModal">
+          <img src="Sensor.webp"  style="border-radius:8px; margin-bottom:12px;">
+          <h3>Automatic Speed Control in EV’s</h3>
+          <p style="color:var(--muted)">
+            <span class="skill" style="padding:6px 10px;font-size:13px">Sensory Evaluation</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px"> Circuit Analysis</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">DC motor</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px"> Circuit Testing </span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- modal moved OUTSIDE of the projects section -->
+    <div id="factorysafetyModal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('agricultureModal')">&times;</span>
+        <img src="factory safety.jpg" alt="Agriculture Information Exchange" style="border-radius:8px; margin-bottom:20px;">
+        <h2>Intelligent factory safety and emergency response system using LabVIEW</h2>
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill">Machine Learning</span>
+          <span class="skill">LABView</span>
+          <span class="skill">PIL</span>
+        </div>
+        <p>
+  <br>
+             In the era of Industry 4.0, unplanned machine downtime is costly — both in time and safety.  
+  I engineered a machine learning-powered predictive maintenance solution that not only 
+  forecasts equipment performance trends but also actively prevents accidents through automated safety responses.
+</p>
+
+<p>
+  <strong> Technical Contributions:</strong><br>
+  • Data-Driven Forecasting – Developed a predictive model using <strong>Facebook Prophet</strong> to analyze historical and real-time sensor data from factory machinery.<br>
+  • High-Accuracy Predictions – Achieved 96.6% forecasting accuracy in identifying performance degradation and maintenance needs before failures occurred.<br>
+  • Industrial IoT Integration – Connected edge devices and sensors for continuous data streaming to the central analysis system.<br>
+  • Interactive LabVIEW Dashboard – Designed a real-time visualization interface displaying current machine status, predicted trends, and risk alerts.<br>
+  • Automated Safety Mechanisms – Implemented logic to trigger immediate equipment shutdown and send multi-channel alerts to on-site personnel upon detecting hazardous anomalies.
+</p>
+
+<p>
+  <strong>Impact:</strong> Enabled proactive maintenance that reduced unexpected downtime, 
+  safeguarded worker safety, and demonstrated how AI + Industrial Automation can create 
+  smarter, self-protecting factory environments.
+</p>
+
+<p>💡 From predicting failures to preventing disasters — automation that cares for both machines and people.</p>
+
+        <h4>Key Skills:</h4>
+        <ul>
+          <li>Python (Programming Language) </li>
+          <li> Data Analysis</li>
+          <li>Cloud Dashboard Integration </li>
+          <li>Google Cloud Platform (GCP) </li>
+        </ul>
+      </div>
+    </div>
+    <div id="voice-controlledModal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('voice-controlledModal')">&times;</span>
+        <img src="Voice control.gif" style="border-radius:8px; margin-bottom:20px;">
+        <h2>Voice Control Based Syringe Infusion Pump</h2>
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill">Arduino UNO</span>
+          <span class="skill">Voice Command Integration</span>
+          <span class="skill">Embedded C</span>
+          <span class="skill">Voltage Regulators</span>
+        </div>
+        <p>
+          
+<p>Imagine a healthcare device that listens, understands, and acts instantly—that’s exactly what I built.</p>
+This voice-enabled syringe infusion pump automates precise drug delivery, reducing manual intervention by 70% and significantly improving patient safety.
+
+<p>I engineered the entire system from microcontroller logic to mobile app interface:</p>
+
+<p>System Architecture – Defined requirements for a medical-grade infusion device with microcontroller-based control for accuracy and reliability.</p>
+
+<p>Custom Android App – Built using MIT App Inventor, enabling healthcare staff to send voice commands via Bluetooth for real-time operation.</p>
+<p>Embedded Firmware – Programmed on Arduino to process commands and drive the syringe motor with millimeter precision.</p>
+<p>Wireless Communication – Integrated Bluetooth modules for instant feedback and secure, low-latency control.</p>
+<p>Rigorous Testing – Conducted functional and stress tests, ensuring the device performs under extended operation without failure.</p>
+
+
+<p>Impact: Reduced manual workload, minimized human error, and demonstrated the potential of IoT + voice technology in next-gen medical devices.</p>
+
+Because in healthcare, every second counts—and so does every drop.
+        <h4>Key Skills:</h4>
+        <ul>
+          <li> Arduino UNO</li>
+          <li>Voice Command Integration</li>
+          <li>Voltage Regulators</li>
+        </ul>
+      </div>
+    </div>
+    <div id="SpeedControlModal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('agricultureModal')">&times;</span>
+        <img src="Sensor.webp" style="border-radius:8px; margin-bottom:20px;">
+        <h2>Automatic Speed Control in EV’s</h2>
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill">Sensory Evaluation</span>
+          <span class="skill">Circuit Analysis</span>
+          <span class="skill">DC Motor</span>
+          <span class="skill">Circuit Testing</span>
+        </div>
+        <p>
+          <p>
+  Why should a driver constantly adjust speed when the vehicle can do it smarter? I developed an 
+  intelligent EV control system that automatically adjusts motor speed based on road slope, 
+  enhancing <strong>safety</strong>, <strong>efficiency</strong>, and <strong>battery life</strong>.
+</p>
+
+<p>
+  <strong>What I built:</strong><br>
+  <br>
+  • Real-Time Slope Detection – Used tilt sensors to monitor road inclination with high accuracy.<br>
+  • Smart Control Logic – Programmed Arduino to process sensor data and instantly adjust motor speed 
+    for optimal performance uphill, downhill, or on flat roads.<br>
+  • Manual Override App – Created an Android app with Bluetooth connectivity for drivers to take 
+    control when needed.<br>
+  • On-Road Validation – Conducted real-world tests confirming rapid response, smooth acceleration/
+    deceleration, and reliable hardware–app communication.
+</p>
+
+<p>
+  <strong>Impact:</strong> Improved driving safety by reducing the risk of overspeeding on slopes, optimized energy usage, 
+  and showcased how sensor fusion + embedded control can make EVs smarter.
+</p>
+
+<p> Because the road changes — your speed should too.</p>
+
+        
+        <ul>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certs" class="reveal">
+      <h2>Certifications</h2>
+      <div class="section-card" style="margin-top:12px">
+        <ul style="color:var(--muted);margin:0 0 0 18px">
+          <li>Python Programming — Infosys Springboard</li>
+          <li>C++ Programming — Infosys Springboard</li>
+          <li>Introduction to HTML — Sololearn</li>
+          <li>IoT Development — Enthu Technology</li>
+          <li>Image Processing — MathWorks</li>
+          <li>MS Excel — Excel Champs</li>
+          <li>Connected Cars & Automation Systems — Krish Tech</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT (styled to match the screenshot you gave) -->
+    <section id="contact" class="reveal">
+      <div class="contact-wrap">
+        <h2 class="contact-title">Get In Touch</h2>
+        <p class="contact-sub">Let's connect and create something amazing together!</p>
+
+        <div class="social-row">
+          <a class="social-btn" href="https://www.linkedin.com/in/vickyyyyyyy/" target="_blank" aria-label="LinkedIn">
+            <!-- LinkedIn SVG -->
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5V24H0V8zm7.5 0h4.8v2.2h.07c.67-1.26 2.31-2.6 4.76-2.6 5.09 0 6 3.34 6 7.66V24h-5v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.76 1.87-2.76 3.8V24h-5V8z"/></svg>
+          </a>
+
+          <a class="social-btn" href="https://github.com/Vigneshwar16" target="_blank" aria-label="GitHub">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .5C5.65.5.5 5.66.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.38-3.88-1.38-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.17-3.09-.12-.29-.51-1.47.11-3.06 0 0 .95-.31 3.12 1.17.9-.25 1.86-.38 2.82-.38.96 0 1.92.13 2.82.38 2.17-1.48 3.12-1.17 3.12-1.17.62 1.59.23 2.77.11 3.06.73.81 1.17 1.83 1.17 3.09 0 4.43-2.71 5.41-5.29 5.69.41.35.77 1.04.77 2.1 0 1.52-.01 2.76-.01 3.13 0 .3.21.66.79.55C20.71 21.4 24 17.09 24 12 24 5.66 18.84.5 12 .5z"/></svg>
+          </a>
+
+          <a class="social-btn" href="mailto:vigneshwarvigneshwar67@gmail.com" aria-label="Email">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+        </div>
+
+        <div class="contact-footer">
+          <h4>Designed by Vigneshwar M</h4>
+          <div style="margin-top:12px">© <span id="year">2025</span> All Rights Reserved</div>
+
+          <div class="tiny-icons" style="margin-top:12px">
+            <a class="tiny-btn" href="https://www.linkedin.com/in/vickyyyyyyy/" target="_blank" aria-label="LinkedIn small">
+              <svg class="tiny-icon" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5V24H0V8zm7.5 0h4.8v2.2h.07c.67-1.26 2.31-2.6 4.76-2.6 5.09 0 6 3.34 6 7.66V24h-5v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.76 1.87-2.76 3.8V24h-5V8z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer (small repeat safe note) -->
+    <footer style="text-align:center;padding:28px;color:var(--muted)">
+      <p>Built with care — Complete Rights to the Owner Only</p>
+      <p> Vigneshwar M </p>
+    </footer>
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // year
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+
+    // nav active (intersection observer)
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          navLinks.forEach(n => n.classList.toggle('active', n.getAttribute('href') === '#' + entry.target.id));
+        }
+      });
+    }, {threshold:0.45});
+    sections.forEach(s=>obs.observe(s));
+
+    // reveal (simple intersection observer)
+    const revealEls = document.querySelectorAll('.reveal');
+    const rObs = new IntersectionObserver((entries, observer)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); observer.unobserve(e.target); }
+      });
+    }, {threshold:0.12});
+    revealEls.forEach(r=>rObs.observe(r));
+
+    // tiny particle canvas (subtle) - invoked IIFE
+    (function(){
+      const canvas = document.getElementById('particles');
+      if(!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = innerWidth, h = canvas.height = innerHeight;
+      let parts = [];
+      function init(){
+        parts = [];
+        const N = Math.max(12, Math.floor((w*h)/180000));
+        for(let i=0;i<N;i++){
+          parts.push({
+            x: Math.random()*w,
+            y: Math.random()*h,
+            r: Math.random()*1.6+0.2,
+            vx: (Math.random()-0.5)*0.2,
+            vy: (Math.random()-0.5)*0.07,
+            a: Math.random()*0.12+0.02
+          });
+        }
+      }
+      function resize(){ w = canvas.width = innerWidth; h = canvas.height = innerHeight; init(); }
+      addEventListener('resize', resize);
+      init();
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+        for(const p of parts){
+          p.x += p.vx; p.y += p.vy;
+          if(p.x < 0) p.x = w;
+          if(p.x > w) p.x = 0;
+          if(p.y < 0) p.y = h;
+          if(p.y > h) p.y = 0;
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(255,255,255,'+p.a+')';
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // modal open/close and toggle blur wrapper
+    function openProjectModal(id) {
+      const modal = document.getElementById(id);
+      if(!modal) return;
+      modal.style.display = 'block';
+      const blur = document.getElementById('blur-header');
+      if(blur) blur.classList.add('hide-blur');
+    }
+
+    function closeProjectModal(id) {
+      const modal = document.getElementById(id);
+      if(!modal) return;
+      modal.style.display = 'none';
+      const blur = document.getElementById('blur-header');
+      if(blur) blur.classList.remove('hide-blur');
+    }
+
+    // Close modal when clicking outside and also remove blur
+    window.addEventListener('click', function(event) {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+          const blur = document.getElementById('blur-header');
+          if(blur) blur.classList.remove('hide-blur');
+        }
+      });
+    });
+
+    // also close on ESC (nice-to-have)
+    window.addEventListener('keydown', function(e){
+      if(e.key === "Escape"){
+        document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        const blur = document.getElementById('blur-header');
+        if(blur) blur.classList.remove('hide-blur');
+      }
+    });
+  </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // helper safe-get
+  const $ = id => document.getElementById(id);
+
+  // attach click handlers to project cards by data attribute
+  document.querySelectorAll('.project-card[data-modal]').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (e) => {
+      const modalId = card.getAttribute('data-modal');
+      console.log('[DEBUG] project card clicked, modalId=', modalId);
+      openProjectModal(modalId);
+    });
+  });
+
+  // attach close handlers (for cross icon)
+  document.querySelectorAll('.modal .close').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const modal = btn.closest('.modal');
+      if (modal) {
+        closeProjectModal(modal.id);
+      }
+    });
+  });
+
+});
+
+// open modal (debug)
+function openProjectModal(id) {
+  try {
+    const modal = document.getElementById(id);
+    if (!modal) { console.error('[DEBUG] openProjectModal: modal not found for id=', id); return; }
+    modal.style.display = 'block';
+    console.log('[DEBUG] modal opened:', id);
+
+    const blur = document.getElementById('blur-header');
+    if (blur) {
+      blur.classList.add('hide-blur');
+      console.log('[DEBUG] blur-header hidden');
+    } else {
+      console.warn('[DEBUG] blur-header element not found');
+    }
+
+    // move focus into modal for accessibility
+    const focusEl = modal.querySelector('.modal-content') || modal;
+    if (focusEl) focusEl.setAttribute('tabindex','-1'), focusEl.focus();
+
+  } catch (err) {
+    console.error('[DEBUG] openProjectModal error:', err);
+  }
+}
+
+// close modal (debug)
+function closeProjectModal(id) {
+  try {
+    const modal = document.getElementById(id);
+    if (!modal) { console.error('[DEBUG] closeProjectModal: modal not found for id=', id); return; }
+    modal.style.display = 'none';
+    console.log('[DEBUG] modal closed:', id);
+
+    const blur = document.getElementById('blur-header');
+    if (blur) {
+      blur.classList.remove('hide-blur');
+      console.log('[DEBUG] blur-header restored');
+    }
+  } catch (err) {
+    console.error('[DEBUG] closeProjectModal error:', err);
+  }
+}
+
+// clicking outside modal closes it and restores blur
+window.addEventListener('click', (event) => {
+  document.querySelectorAll('.modal').forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      const blur = document.getElementById('blur-header');
+      if (blur) blur.classList.remove('hide-blur');
+      console.log('[DEBUG] modal closed by outside click, id=', modal.id);
+    }
+  });
+});
+
+// ESC key closes modals
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+    const blur = document.getElementById('blur-header');
+    if (blur) blur.classList.remove('hide-blur');
+    console.log('[DEBUG] ESC pressed - all modals closed');
+  }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // helper function for ID
+  const $ = id => document.getElementById(id);
+
+  // attach click handlers to project cards
+  document.querySelectorAll('.project-card[data-modal]').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const modalId = card.getAttribute('data-modal');
+      openProjectModal(modalId);
+    });
+  });
+
+  // attach close handlers (X icon in modal)
+  document.querySelectorAll('.modal .close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = btn.closest('.modal');
+      if (modal) closeProjectModal(modal.id);
+    });
+  });
+
+});
+
+// open modal and hide blur
+function openProjectModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.style.display = 'block';
+
+  const blur = document.getElementById('blur-header');
+  if (blur) blur.classList.add('hide-blur');
+}
+
+// close modal and show blur
+function closeProjectModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.style.display = 'none';
+
+  const blur = document.getElementById('blur-header');
+  if (blur) blur.classList.remove('hide-blur');
+}
+
+// close modal when clicking outside
+window.addEventListener('click', (event) => {
+  document.querySelectorAll('.modal').forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      const blur = document.getElementById('blur-header');
+      if (blur) blur.classList.remove('hide-blur');
+    }
+  });
+});
+
+// close modal with ESC key
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+    const blur = document.getElementById('blur-header');
+    if (blur) blur.classList.remove('hide-blur');
+  }
+});
+</script>
+
+</body>
+</html>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me</title>
+<style>
+  /* =========================
+     THEME (EDITABLE VARS)
+     ========================= */
+  :root{
+    --bg1:#071025;
+    --bg2:#0b2540;
+    --card: rgba(255,255,255,0.03);
+    --glass: rgba(255,255,255,0.04);
+    --accent1:#00a8ff;
+    --accent2:#00d4ff;
+    --accent-main:#06b6d4;
+    --accent-alt:#7c3aed;
+    --muted:#9fb1c8;
+    --text:#e6f0fb;
+    --maxwidth:1080px;
+    --radius:14px;
+  }
+
+  /* =========================
+     BASIC RESET & LAYOUT
+     ========================= */
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.5;
+  }
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxwidth);margin:0 auto;padding:28px;position:relative;z-index:10}
+
+  /* =========================
+     HEADER / NAV
+     ========================= */
+  header{
+    position:fixed;left:0;right:0;top:0;z-index:60;
+    display:flex;align-items:center;justify-content:space-between;padding:14px 28px;
+    background:linear-gradient(180deg, rgba(6,10,18,0.35), rgba(6,10,18,0.12));
+    backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.02)
+  }
+  .brand{display:flex;gap:12px;align-items:center}
+  .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent-main),var(--accent-alt));
+        display:flex;align-items:center;justify-content:center;font-weight:800;color:#021023}
+  nav{display:flex;gap:14px;align-items:center}
+  nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px;font-weight:700}
+  nav a.active,nav a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+
+  /* ====== SLIDING UNDERLINE EFFECT ====== */
+  .slide-underline { position: relative; display: inline-block; text-decoration: none; }
+  .slide-underline::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background: var(--accent-main); /* fixed: use --accent-main */
+    transform: scaleX(0);
+    transform-origin: bottom left;
+    transition: transform 0.28s ease;
+  }
+  .slide-underline:hover::after { transform: scaleX(1); }
+
+  /* =========================
+     HERO
+     ========================= */
+  .hero{min-height:86vh;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding-top:88px}
+  .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:800;margin-bottom:16px}
+  h1{font-size:44px;margin:0 0 12px 0;line-height:1.02}
+  .lead{color:var(--muted);max-width:60ch;font-size:16px}
+  .cta{margin-top:18px;display:flex;gap:12px}
+  .btn{padding:10px 14px;border-radius:12px;font-weight:800;text-decoration:none;border:1px solid rgba(255,255,255,0.04);display:inline-flex;align-items:center;gap:10px}
+  .btn.primary{background:linear-gradient(90deg,var(--accent-main),var(--accent-alt));color:#021023;border:none;box-shadow:0 8px 30px rgba(2,6,23,0.5)}
+
+  .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .avatar{width:100%;height:360px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#06203a,#021022);display:flex;align-items:center;justify-content:center}
+  .meta{display:flex;justify-content:space-between;padding-top:12px;color:var(--muted);font-weight:700}
+
+  /* =========================
+     SECTIONS
+     ========================= */
+  section{padding:80px 0}
+  .section-card{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .two-col{display:grid;grid-template-columns:1fr 380px;gap:22px}
+  .skills{display:flex;flex-wrap:wrap;gap:10px}
+  .skill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:800}
+
+  /* projects */
+  .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .card{padding:16px;border-radius:12px;position:relative;border:1px solid rgba(255,255,255,0.02);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transition:transform .25s, box-shadow .25s}
+  .card:hover{transform:translateY(-10px);box-shadow:0 24px 60px rgba(2,6,23,0.6)}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s}
+  .reveal.show{opacity:1;transform:none}
+
+  /* =========================
+     CONTACT (TARGETED STYLE YOU WANTED)
+     ========================= */
+  .contact-wrap{
+    background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+    padding:48px 20px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
+    text-align:center;
+  }
+
+  .contact-title{
+    font-size:56px; font-weight:800; margin:0 0 18px 0;
+    background: linear-gradient(90deg,var(--accent1),var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .contact-sub{
+    color:var(--muted); font-size:20px; margin-bottom:28px;
+  }
+
+  /* social icons row (big circles) */
+  .social-row{display:flex;gap:22px;justify-content:center;align-items:center;margin-bottom:26px;flex-wrap:wrap}
+  .social-btn{
+    width:92px;height:92px;border-radius:999px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;
+    box-shadow:inset 0 -6px 18px rgba(0,0,0,0.25);transition:transform .22s, box-shadow .22s;
+    border:1px solid rgba(255,255,255,0.02);
+  }
+  .social-btn:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 20px 50px rgba(2,6,23,0.6)}
+  .social-icon{width:40px;height:40px;display:block;fill:var(--text);opacity:0.96}
+
+  /* footer block style like image */
+  .contact-footer{
+    background:#060607;padding:36px 20px;margin-top:18px;border-top:1px solid rgba(255,255,255,0.02);
+    text-align:center;color:var(--muted);
+  }
+  .contact-footer h4{color:var(--text);font-weight:700;margin:0 0 18px 0}
+  .tiny-icons{display:flex;gap:14px;justify-content:center;margin-top:18px;align-items:center}
+  .tiny-btn{width:36px;height:36px;border-radius:8px;background:transparent;display:flex;align-items:center;justify-content:center; border:1px solid rgba(255,255,255,0.04)}
+  .tiny-icon{width:18px;height:18px;fill:var(--text)}
+
+  /* responsive tweaks */
+  @media (max-width:980px){
+    .hero{grid-template-columns:1fr;gap:18px}
+    .projects-grid{grid-template-columns:1fr}
+    .two-col{grid-template-columns:1fr}
+    .social-btn{width:72px;height:72px}
+    .contact-title{font-size:44px}
+  }
+  @media (max-width:520px){
+    .contact-title{font-size:36px}
+    .social-btn{width:64px;height:64px}
+    .social-icon{width:28px;height:28px}
+  }
+
+  /* Project modal (single copy) */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    padding-top: 50px;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+  }
+
+  .modal-content {
+    background: var(--bg2);
+    margin: auto;
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 700px;
+    color: var(--text);
+  }
+
+  .close {
+    color: var(--muted);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .close:hover {
+    color: var(--accent-main);
+  }
+
+  /* simple hide class for the blur wrapper */
+  .hide-blur {
+    display: none !important;
+  }
+
+.hide-blur {
+  display: none !important;
+}
+
+</style>
+</head>
+<body>
+
+  <!-- wrapper for blurred elements + particles -->
+  <div id="blur-header">
+    <!-- subtle decorative blobs -->
+    <div style="position:fixed;left:-120px;top:-60px;width:320px;height:320px;border-radius:999px;filter:blur(36px);background:linear-gradient(90deg,var(--accent-main),var(--accent-alt));opacity:0.6;z-index:2"></div>
+
+    <!-- particle canvas (light) -->
+    <canvas id="particles" style="position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0.12"></canvas>
+  </div>
+
+  <!-- NAV -->
+  <!-- NAV -->
+<!-- NAV -->
+<header>
+  <div class="brand">
+    <div class="logo">
+      <div class="frame">
+        <img src="Vigneshwar Photo.JPG" alt="Vigneshwar Photo">
+      </div>
+    </div>
+    <div>
+      <div style="font-weight:800">Vigneshwar M</div>
+      <div style="font-size:12px;color:var(--muted)">Full Stack Developer • Software Curious</div>
+    </div>
+  </div>
+
+
+<style>
+.frame {
+    width: 120px;  /* Adjust based on your design */
+    height: 65px;
+    padding: 4px;
+    background: linear-gradient(to bottom, #0d47a1, #673ab7);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+</style>
+
+
+
+    <nav>
+       <a href="#about" class="nav-link slide-underline">About</a>
+       <a href="#about" class="nav-link slide-underline">Skills</a>
+       <a href="#projects" class="nav-link slide-underline">Projects</a>
+       <a href="#certs" class="nav-link slide-underline">Certifications</a>
+       <a href="#contact" class="nav-link slide-underline">Contact</a>
+    </nav>
+  </header>
+
+  <main class="wrap">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div>
+        <span class="eyebrow">Open to roles • Actively learning software</span>
+        <h1>Bridging infra & software Writing clean code</h1>
+        <p class="lead">I’m Vigneshwar M — an Electronics and Communication Engineering graduate with hands-on experience in embedded systems, Sensor Integration and IoT. Bridging embedded systems and full-stack development to create real-world solutions. I build small, reliable tools and document everything. I like pragmatic solutions that scale.</p>
+
+        <div class="cta">
+          <a class="btn primary" href="Vigneshwar M .resume.pdf" download>📄 Download Resume</a>
+          <a class="btn" href="#projects">View Projects</a>
+        </div>
+
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+          <div class="skill">Front-end Development</div>
+          <div class="skill">Django</div>
+          <div class="skill">Python</div>
+          <div class="skill">Embedded</div>
+          <div class="skill">MongoDB</div>
+          <div class="skill">DSA</div>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <div class="avatar">
+          <img src="Namma photo.jpg" >
+        </div>
+        <div class="meta">
+          <div>
+            <div style="font-weight:800">Vigneshwar M</div>
+            <div style="color:var(--muted);font-weight:700;font-size:13px">Coimbatore, India</div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-weight:800">Open to opportunities</div>
+            <div style="color:var(--muted);font-weight:700;font-size:13px">Graduation 2025</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <div class="two-col">
+        <div>
+          <h2>About</h2>
+          <div class="section-card">
+            <p style="color:var(--muted)">I’m Vigneshwar M — part problem-solver, part tech tinkerer.
+I build things that talk, think, and react — from voice-controlled medical devices to terrain-smart EV controllers.
+Whether it’s Python scripts, IoT prototypes, or full-stack apps, I turn ideas into tools that work in the real world.
+When I’m not debugging, you’ll find me experimenting with new tech stacks or improving old projects — because good enough is never good enough.</p>
+</p>
+
+
+
+            <h3 style="margin-top:14px">Experience highlights</h3>
+            <ul style="color:var(--muted);margin:8px 0 0 18px">
+              <li>Intern — Embedded & IoT at <b>Enthu Technology Solutions</b> — sensors, dashboards, automation features.</li>
+              <li>Network fundamentals (VLAN, LoRa, OSPF, BGP), exposure to Embedded Firmwares, Sensors Integration & monitoring tools.</li>
+              <li>Python automation scripts for device backups and health checks.</li>
+            </ul>
+          </div>
+        </div>
+
+        <aside>
+          <h2>Skills</h2>
+          <div class="section-card" style="display:flex;flex-direction:column;gap:12px">
+            <div class="skills">
+              <div class="skill">Python</div>
+              <div class="skill">C</div>
+              <div class="skill">HTML/CSS/JS</div>
+              <div class="skill">Microsoft Azure</div>
+              <div class="skill">Git</div>
+              <div class="skill">Backend Development</div>
+              <div class="skill">Embedded Programming</div>
+            </div>
+
+            <div style="margin-top:6px;color:var(--muted);font-weight:700">Education</div>
+            <div style="font-weight:800">B.E. — Electronics & Communication</div>
+            <div style="color:var(--muted);font-size:13px">Sri Ramakrishna Engineering College — 2021–2025</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <h2>Projects</h2>
+      <div style="margin-top:14px" class="projects-grid">
+        <!-- >>> EDIT: COPY THIS BLOCK to add more projects -->
+       <article class="card project-card" data-modal="factorysafetyModal">
+          <img src="factory safety.jpg" style="border-radius:8px; margin-bottom:12px;">
+          <h3>Intelligent factory safety and emergency response system using LabVIEW</h3>
+          <p style="color:var(--muted)"></p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="skill" style="padding:6px 10px;font-size:13px">Machine Learning</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">LABVIEW</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Firebase</span>
+          </div>
+        </article>
+
+        <article class="card project-card" data-modal="voice-controlledModal">
+          <img src="Voice control.gif" style="border-radius:8px; margin-bottom:12px;">
+          <h3>Voice Control Based Syringe Infusion Pump</h3>
+          <p style="color:var(--muted)"></p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="skill" style="padding:6px 10px;font-size:13px">Arduino UNO</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Voice Command Integration</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Embedded C</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Voltage Regulators</span>
+          </div>
+        </article>
+
+        <article class="card project-card" data-modal="SpeedControlModal">
+          <img src="Sensor.webp"  style="border-radius:8px; margin-bottom:12px;">
+          <h3>Automatic Speed Control in EV’s</h3>
+          <p style="color:var(--muted)">
+            <span class="skill" style="padding:6px 10px;font-size:13px">Sensory Evaluation</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px"> Circuit Analysis</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">DC motor</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px"> Circuit Testing </span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- modal moved OUTSIDE of the projects section -->
+    <div id="factorysafetyModal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('agricultureModal')">&times;</span>
+        <img src="factory safety.jpg" alt="Agriculture Information Exchange" style="border-radius:8px; margin-bottom:20px;">
+        <h2>Intelligent factory safety and emergency response system using LabVIEW</h2>
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill">Machine Learning</span>
+          <span class="skill">LABView</span>
+          <span class="skill">PIL</span>
+        </div>
+        <p>
+  <br>
+             In the era of Industry 4.0, unplanned machine downtime is costly — both in time and safety.  
+  I engineered a machine learning-powered predictive maintenance solution that not only 
+  forecasts equipment performance trends but also actively prevents accidents through automated safety responses.
+</p>
+
+<p>
+  <strong> Technical Contributions:</strong><br>
+  • Data-Driven Forecasting – Developed a predictive model using <strong>Facebook Prophet</strong> to analyze historical and real-time sensor data from factory machinery.<br>
+  • High-Accuracy Predictions – Achieved 96.6% forecasting accuracy in identifying performance degradation and maintenance needs before failures occurred.<br>
+  • Industrial IoT Integration – Connected edge devices and sensors for continuous data streaming to the central analysis system.<br>
+  • Interactive LabVIEW Dashboard – Designed a real-time visualization interface displaying current machine status, predicted trends, and risk alerts.<br>
+  • Automated Safety Mechanisms – Implemented logic to trigger immediate equipment shutdown and send multi-channel alerts to on-site personnel upon detecting hazardous anomalies.
+</p>
+
+<p>
+  <strong>Impact:</strong> Enabled proactive maintenance that reduced unexpected downtime, 
+  safeguarded worker safety, and demonstrated how AI + Industrial Automation can create 
+  smarter, self-protecting factory environments.
+</p>
+
+<p>💡 From predicting failures to preventing disasters — automation that cares for both machines and people.</p>
+
+        <h4>Key Skills:</h4>
+        <ul>
+          <li>Python (Programming Language) </li>
+          <li> Data Analysis</li>
+          <li>Cloud Dashboard Integration </li>
+          <li>Google Cloud Platform (GCP) </li>
+        </ul>
+      </div>
+    </div>
+    <div id="voice-controlledModal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('voice-controlledModal')">&times;</span>
+        <img src="Voice control.gif" style="border-radius:8px; margin-bottom:20px;">
+        <h2>Voice Control Based Syringe Infusion Pump</h2>
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill">Arduino UNO</span>
+          <span class="skill">Voice Command Integration</span>
+          <span class="skill">Embedded C</span>
+          <span class="skill">Voltage Regulators</span>
+        </div>
+        <p>
+          
+<p>Imagine a healthcare device that listens, understands, and acts instantly—that’s exactly what I built.</p>
+This voice-enabled syringe infusion pump automates precise drug delivery, reducing manual intervention by 70% and significantly improving patient safety.
+
+<p>I engineered the entire system from microcontroller logic to mobile app interface:</p>
+
+<p>System Architecture – Defined requirements for a medical-grade infusion device with microcontroller-based control for accuracy and reliability.</p>
+
+<p>Custom Android App – Built using MIT App Inventor, enabling healthcare staff to send voice commands via Bluetooth for real-time operation.</p>
+<p>Embedded Firmware – Programmed on Arduino to process commands and drive the syringe motor with millimeter precision.</p>
+<p>Wireless Communication – Integrated Bluetooth modules for instant feedback and secure, low-latency control.</p>
+<p>Rigorous Testing – Conducted functional and stress tests, ensuring the device performs under extended operation without failure.</p>
+
+
+<p>Impact: Reduced manual workload, minimized human error, and demonstrated the potential of IoT + voice technology in next-gen medical devices.</p>
+
+Because in healthcare, every second counts—and so does every drop.
+        <h4>Key Skills:</h4>
+        <ul>
+          <li> Arduino UNO</li>
+          <li>Voice Command Integration</li>
+          <li>Voltage Regulators</li>
+        </ul>
+      </div>
+    </div>
+    <div id="SpeedControlModal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('agricultureModal')">&times;</span>
+        <img src="Sensor.webp" style="border-radius:8px; margin-bottom:20px;">
+        <h2>Automatic Speed Control in EV’s</h2>
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill">Sensory Evaluation</span>
+          <span class="skill">Circuit Analysis</span>
+          <span class="skill">DC Motor</span>
+          <span class="skill">Circuit Testing</span>
+        </div>
+        <p>
+          <p>
+  Why should a driver constantly adjust speed when the vehicle can do it smarter? I developed an 
+  intelligent EV control system that automatically adjusts motor speed based on road slope, 
+  enhancing <strong>safety</strong>, <strong>efficiency</strong>, and <strong>battery life</strong>.
+</p>
+
+<p>
+  <strong>What I built:</strong><br>
+  <br>
+  • Real-Time Slope Detection – Used tilt sensors to monitor road inclination with high accuracy.<br>
+  • Smart Control Logic – Programmed Arduino to process sensor data and instantly adjust motor speed 
+    for optimal performance uphill, downhill, or on flat roads.<br>
+  • Manual Override App – Created an Android app with Bluetooth connectivity for drivers to take 
+    control when needed.<br>
+  • On-Road Validation – Conducted real-world tests confirming rapid response, smooth acceleration/
+    deceleration, and reliable hardware–app communication.
+</p>
+
+<p>
+  <strong>Impact:</strong> Improved driving safety by reducing the risk of overspeeding on slopes, optimized energy usage, 
+  and showcased how sensor fusion + embedded control can make EVs smarter.
+</p>
+
+<p> Because the road changes — your speed should too.</p>
+
+        
+        <ul>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certs" class="reveal">
+      <h2>Certifications</h2>
+      <div class="section-card" style="margin-top:12px">
+        <ul style="color:var(--muted);margin:0 0 0 18px">
+          <li>Python Programming — Infosys Springboard</li>
+          <li>C++ Programming — Infosys Springboard</li>
+          <li>Introduction to HTML — Sololearn</li>
+          <li>IoT Development — Enthu Technology</li>
+          <li>Image Processing — MathWorks</li>
+          <li>MS Excel — Excel Champs</li>
+          <li>Connected Cars & Automation Systems — Krish Tech</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT (styled to match the screenshot you gave) -->
+    <section id="contact" class="reveal">
+      <div class="contact-wrap">
+        <h2 class="contact-title">Get In Touch</h2>
+        <p class="contact-sub">Let's connect and create something amazing together!</p>
+
+        <div class="social-row">
+          <a class="social-btn" href="https://www.linkedin.com/in/vickyyyyyyy/" target="_blank" aria-label="LinkedIn">
+            <!-- LinkedIn SVG -->
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5V24H0V8zm7.5 0h4.8v2.2h.07c.67-1.26 2.31-2.6 4.76-2.6 5.09 0 6 3.34 6 7.66V24h-5v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.76 1.87-2.76 3.8V24h-5V8z"/></svg>
+          </a>
+
+          <a class="social-btn" href="https://github.com/Vigneshwar16" target="_blank" aria-label="GitHub">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .5C5.65.5.5 5.66.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.38-3.88-1.38-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.17-3.09-.12-.29-.51-1.47.11-3.06 0 0 .95-.31 3.12 1.17.9-.25 1.86-.38 2.82-.38.96 0 1.92.13 2.82.38 2.17-1.48 3.12-1.17 3.12-1.17.62 1.59.23 2.77.11 3.06.73.81 1.17 1.83 1.17 3.09 0 4.43-2.71 5.41-5.29 5.69.41.35.77 1.04.77 2.1 0 1.52-.01 2.76-.01 3.13 0 .3.21.66.79.55C20.71 21.4 24 17.09 24 12 24 5.66 18.84.5 12 .5z"/></svg>
+          </a>
+
+          <a class="social-btn" href="mailto:vigneshwarvigneshwar67@gmail.com" aria-label="Email">
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+        </div>
+
+        <div class="contact-footer">
+          <h4>Designed by Vigneshwar M</h4>
+          <div style="margin-top:12px">© <span id="year">2025</span> All Rights Reserved</div>
+
+          <div class="tiny-icons" style="margin-top:12px">
+            <a class="tiny-btn" href="https://www.linkedin.com/in/vickyyyyyyy/" target="_blank" aria-label="LinkedIn small">
+              <svg class="tiny-icon" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5V24H0V8zm7.5 0h4.8v2.2h.07c.67-1.26 2.31-2.6 4.76-2.6 5.09 0 6 3.34 6 7.66V24h-5v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.76 1.87-2.76 3.8V24h-5V8z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer (small repeat safe note) -->
+    <footer style="text-align:center;padding:28px;color:var(--muted)">
+      <p>Built with care — Complete Rights to the Owner Only</p>
+      <p> Vigneshwar M </p>
+    </footer>
+  </main>
+
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // year
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const t = document.querySelector(a.getAttribute('href'));
+        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+
+    // nav active (intersection observer)
+    const sections = document.querySelectorAll('main section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const obs = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          navLinks.forEach(n => n.classList.toggle('active', n.getAttribute('href') === '#' + entry.target.id));
+        }
+      });
+    }, {threshold:0.45});
+    sections.forEach(s=>obs.observe(s));
+
+    // reveal (simple intersection observer)
+    const revealEls = document.querySelectorAll('.reveal');
+    const rObs = new IntersectionObserver((entries, observer)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting){ e.target.classList.add('show'); observer.unobserve(e.target); }
+      });
+    }, {threshold:0.12});
+    revealEls.forEach(r=>rObs.observe(r));
+
+    // tiny particle canvas (subtle) - invoked IIFE
+    (function(){
+      const canvas = document.getElementById('particles');
+      if(!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = innerWidth, h = canvas.height = innerHeight;
+      let parts = [];
+      function init(){
+        parts = [];
+        const N = Math.max(12, Math.floor((w*h)/180000));
+        for(let i=0;i<N;i++){
+          parts.push({
+            x: Math.random()*w,
+            y: Math.random()*h,
+            r: Math.random()*1.6+0.2,
+            vx: (Math.random()-0.5)*0.2,
+            vy: (Math.random()-0.5)*0.07,
+            a: Math.random()*0.12+0.02
+          });
+        }
+      }
+      function resize(){ w = canvas.width = innerWidth; h = canvas.height = innerHeight; init(); }
+      addEventListener('resize', resize);
+      init();
+      function draw(){
+        ctx.clearRect(0,0,w,h);
+        for(const p of parts){
+          p.x += p.vx; p.y += p.vy;
+          if(p.x < 0) p.x = w;
+          if(p.x > w) p.x = 0;
+          if(p.y < 0) p.y = h;
+          if(p.y > h) p.y = 0;
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(255,255,255,'+p.a+')';
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+          ctx.fill();
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // modal open/close and toggle blur wrapper
+    function openProjectModal(id) {
+      const modal = document.getElementById(id);
+      if(!modal) return;
+      modal.style.display = 'block';
+      const blur = document.getElementById('blur-header');
+      if(blur) blur.classList.add('hide-blur');
+    }
+
+    function closeProjectModal(id) {
+      const modal = document.getElementById(id);
+      if(!modal) return;
+      modal.style.display = 'none';
+      const blur = document.getElementById('blur-header');
+      if(blur) blur.classList.remove('hide-blur');
+    }
+
+    // Close modal when clicking outside and also remove blur
+    window.addEventListener('click', function(event) {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = "none";
+          const blur = document.getElementById('blur-header');
+          if(blur) blur.classList.remove('hide-blur');
+        }
+      });
+    });
+
+    // also close on ESC (nice-to-have)
+    window.addEventListener('keydown', function(e){
+      if(e.key === "Escape"){
+        document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        const blur = document.getElementById('blur-header');
+        if(blur) blur.classList.remove('hide-blur');
+      }
+    });
+  </script>
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // helper safe-get
+  const $ = id => document.getElementById(id);
+
+  // attach click handlers to project cards by data attribute
+  document.querySelectorAll('.project-card[data-modal]').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (e) => {
+      const modalId = card.getAttribute('data-modal');
+      console.log('[DEBUG] project card clicked, modalId=', modalId);
+      openProjectModal(modalId);
+    });
+  });
+
+  // attach close handlers (for cross icon)
+  document.querySelectorAll('.modal .close').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const modal = btn.closest('.modal');
+      if (modal) {
+        closeProjectModal(modal.id);
+      }
+    });
+  });
+
+});
+
+// open modal (debug)
+function openProjectModal(id) {
+  try {
+    const modal = document.getElementById(id);
+    if (!modal) { console.error('[DEBUG] openProjectModal: modal not found for id=', id); return; }
+    modal.style.display = 'block';
+    console.log('[DEBUG] modal opened:', id);
+
+    const blur = document.getElementById('blur-header');
+    if (blur) {
+      blur.classList.add('hide-blur');
+      console.log('[DEBUG] blur-header hidden');
+    } else {
+      console.warn('[DEBUG] blur-header element not found');
+    }
+
+    // move focus into modal for accessibility
+    const focusEl = modal.querySelector('.modal-content') || modal;
+    if (focusEl) focusEl.setAttribute('tabindex','-1'), focusEl.focus();
+
+  } catch (err) {
+    console.error('[DEBUG] openProjectModal error:', err);
+  }
+}
+
+// close modal (debug)
+function closeProjectModal(id) {
+  try {
+    const modal = document.getElementById(id);
+    if (!modal) { console.error('[DEBUG] closeProjectModal: modal not found for id=', id); return; }
+    modal.style.display = 'none';
+    console.log('[DEBUG] modal closed:', id);
+
+    const blur = document.getElementById('blur-header');
+    if (blur) {
+      blur.classList.remove('hide-blur');
+      console.log('[DEBUG] blur-header restored');
+    }
+  } catch (err) {
+    console.error('[DEBUG] closeProjectModal error:', err);
+  }
+}
+
+// clicking outside modal closes it and restores blur
+window.addEventListener('click', (event) => {
+  document.querySelectorAll('.modal').forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      const blur = document.getElementById('blur-header');
+      if (blur) blur.classList.remove('hide-blur');
+      console.log('[DEBUG] modal closed by outside click, id=', modal.id);
+    }
+  });
+});
+
+// ESC key closes modals
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+    const blur = document.getElementById('blur-header');
+    if (blur) blur.classList.remove('hide-blur');
+    console.log('[DEBUG] ESC pressed - all modals closed');
+  }
+});
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // helper function for ID
+  const $ = id => document.getElementById(id);
+
+  // attach click handlers to project cards
+  document.querySelectorAll('.project-card[data-modal]').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const modalId = card.getAttribute('data-modal');
+      openProjectModal(modalId);
+    });
+  });
+
+  // attach close handlers (X icon in modal)
+  document.querySelectorAll('.modal .close').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const modal = btn.closest('.modal');
+      if (modal) closeProjectModal(modal.id);
+    });
+  });
+
+});
+
+// open modal and hide blur
+function openProjectModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.style.display = 'block';
+
+  const blur = document.getElementById('blur-header');
+  if (blur) blur.classList.add('hide-blur');
+}
+
+// close modal and show blur
+function closeProjectModal(id) {
+  const modal = document.getElementById(id);
+  if (!modal) return;
+  modal.style.display = 'none';
+
+  const blur = document.getElementById('blur-header');
+  if (blur) blur.classList.remove('hide-blur');
+}
+
+// close modal when clicking outside
+window.addEventListener('click', (event) => {
+  document.querySelectorAll('.modal').forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+      const blur = document.getElementById('blur-header');
+      if (blur) blur.classList.remove('hide-blur');
+    }
+  });
+});
+
+// close modal with ESC key
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+    const blur = document.getElementById('blur-header');
+    if (blur) blur.classList.remove('hide-blur');
+  }
+});
+</script>
+
+</body>
+</html>
+>>>>>>> 5a4da9df5547cda499b8bd5f1c77dd25a87a453a
