@@ -1,266 +1,559 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About Me</title>
-<style>
-  /* =========================
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me</title>
+  <style>
+    /* =========================
      THEME (EDITABLE VARS)
      ========================= */
-  :root{
-    --bg1:#071025;
-    --bg2:#0b2540;
-    --card: rgba(255,255,255,0.03);
-    --glass: rgba(255,255,255,0.04);
-    --accent1:#00a8ff;
-    --accent2:#00d4ff;
-    --accent-main:#06b6d4;
-    --accent-alt:#7c3aed;
-    --muted:#9fb1c8;
-    --text:#e6f0fb;
-    --maxwidth:1080px;
-    --radius:14px;
-  }
+    :root {
+      --bg1: #071025;
+      --bg2: #0b2540;
+      --card: rgba(255, 255, 255, 0.03);
+      --glass: rgba(255, 255, 255, 0.04);
+      --accent1: #00a8ff;
+      --accent2: #00d4ff;
+      --accent-main: #06b6d4;
+      --accent-alt: #7c3aed;
+      --muted: #9fb1c8;
+      --text: #e6f0fb;
+      --maxwidth: 1080px;
+      --radius: 14px;
+    }
 
-  /* =========================
+    /* =========================
      BASIC RESET & LAYOUT
      ========================= */
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-    background:linear-gradient(180deg,var(--bg1),var(--bg2));
-    color:var(--text);
-    -webkit-font-smoothing:antialiased;
-    line-height:1.5;
-  }
-  a{color:inherit}
-  img{max-width:100%;display:block}
-  .wrap{max-width:var(--maxwidth);margin:0 auto;padding:28px;position:relative;z-index:10}
+    * {
+      box-sizing: border-box
+    }
 
-  /* =========================
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background: linear-gradient(180deg, var(--bg1), var(--bg2));
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    .wrap {
+      max-width: var(--maxwidth);
+      margin: 0 auto;
+      padding: 28px;
+      position: relative;
+      z-index: 10
+    }
+
+    /* =========================
      HEADER / NAV
      ========================= */
-  header{
-    position:fixed;left:0;right:0;top:0;z-index:60;
-    display:flex;align-items:center;justify-content:space-between;padding:14px 28px;
-    background:linear-gradient(180deg, rgba(6,10,18,0.35), rgba(6,10,18,0.12));
-    backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.02)
-  }
-  .brand{display:flex;gap:12px;align-items:center}
-  .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent-main),var(--accent-alt));
-        display:flex;align-items:center;justify-content:center;font-weight:800;color:#021023}
-  nav{display:flex;gap:14px;align-items:center}
-  nav a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px;font-weight:700}
-  nav a.active,nav a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+    header {
+      position: fixed;
+      left: 0;
+      right: 0;
+      top: 0;
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 28px;
+      background: linear-gradient(180deg, rgba(6, 10, 18, 0.35), rgba(6, 10, 18, 0.12));
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.02)
+    }
 
-  /* ====== SLIDING UNDERLINE EFFECT ====== */
-  .slide-underline { position: relative; display: inline-block; text-decoration: none; }
-  .slide-underline::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -3px;
-    left: 0;
-    background: var(--accent-main); /* fixed: use --accent-main */
-    transform: scaleX(0);
-    transform-origin: bottom left;
-    transition: transform 0.28s ease;
-  }
-  .slide-underline:hover::after { transform: scaleX(1); }
+    .brand {
+      display: flex;
+      gap: 12px;
+      align-items: center
+    }
 
-  /* =========================
+    .logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent-main), var(--accent-alt));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #021023
+    }
+
+    nav {
+      display: flex;
+      gap: 14px;
+      align-items: center
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px;
+      border-radius: 8px;
+      font-weight: 700
+    }
+
+    nav a.active,
+    nav a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.02)
+    }
+
+    /* ====== SLIDING UNDERLINE EFFECT ====== */
+    .slide-underline {
+      position: relative;
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .slide-underline::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      bottom: -3px;
+      left: 0;
+      background: var(--accent-main);
+      /* fixed: use --accent-main */
+      transform: scaleX(0);
+      transform-origin: bottom left;
+      transition: transform 0.28s ease;
+    }
+
+    .slide-underline:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* =========================
      HERO
      ========================= */
-  .hero{min-height:86vh;display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;padding-top:88px}
-  .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:800;margin-bottom:16px}
-  h1{font-size:44px;margin:0 0 12px 0;line-height:1.02}
-  .lead{color:var(--muted);max-width:60ch;font-size:16px}
-  .cta{margin-top:18px;display:flex;gap:12px}
-  .btn{padding:10px 14px;border-radius:12px;font-weight:800;text-decoration:none;border:1px solid rgba(255,255,255,0.04);display:inline-flex;align-items:center;gap:10px}
-  .btn.primary{background:linear-gradient(90deg,var(--accent-main),var(--accent-alt));color:#021023;border:none;box-shadow:0 8px 30px rgba(2,6,23,0.5)}
+    .hero {
+      min-height: 86vh;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 28px;
+      align-items: center;
+      padding-top: 88px
+    }
 
-  .hero-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-  .avatar{width:100%;height:360px;border-radius:10px;overflow:hidden;background:linear-gradient(180deg,#06203a,#021022);display:flex;align-items:center;justify-content:center}
-  .meta{display:flex;justify-content:space-between;padding-top:12px;color:var(--muted);font-weight:700}
+    .eyebrow {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      font-weight: 800;
+      margin-bottom: 16px
+    }
 
-  /* =========================
+    h1 {
+      font-size: 44px;
+      margin: 0 0 12px 0;
+      line-height: 1.02
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 16px
+    }
+
+    .cta {
+      margin-top: 18px;
+      display: flex;
+      gap: 12px
+    }
+
+    .btn {
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .btn.primary {
+      background: linear-gradient(90deg, var(--accent-main), var(--accent-alt));
+      color: #021023;
+      border: none;
+      box-shadow: 0 8px 30px rgba(2, 6, 23, 0.5)
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02)
+    }
+
+    .avatar {
+      width: 100%;
+      height: 360px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #06203a, #021022);
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .meta {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 12px;
+      color: var(--muted);
+      font-weight: 700
+    }
+
+    /* =========================
      SECTIONS
      ========================= */
-  section{padding:80px 0}
-  .section-card{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
-  .two-col{display:grid;grid-template-columns:1fr 380px;gap:22px}
-  .skills{display:flex;flex-wrap:wrap;gap:10px}
-  .skill{padding:8px 12px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:800}
+    section {
+      padding: 40px 0
+    }
 
-  /* projects */
-  .projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-  .card{padding:16px;border-radius:12px;position:relative;border:1px solid rgba(255,255,255,0.02);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transition:transform .25s, box-shadow .25s}
-  .card:hover{transform:translateY(-10px);box-shadow:0 24px 60px rgba(2,6,23,0.6)}
+    .section-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent);
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02)
+    }
 
-  /* reveal */
-  .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease, transform .6s}
-  .reveal.show{opacity:1;transform:none}
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 22px
+    }
 
-  /* =========================
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px
+    }
+
+    .skill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--muted);
+      font-weight: 800
+    }
+
+    /* projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px
+    }
+
+    .card {
+      padding: 16px;
+      border-radius: 12px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+      transition: transform .25s, box-shadow .25s
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 24px 60px rgba(2, 6, 23, 0.6)
+    }
+
+    /* reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity .6s ease, transform .6s
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none
+    }
+
+    /* =========================
      CONTACT (TARGETED STYLE YOU WANTED)
      ========================= */
-  .contact-wrap{
-    background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
-    padding:48px 20px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);
-    text-align:center;
-  }
+    .contact-wrap {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.01), transparent);
+      padding: 48px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      text-align: center;
+    }
 
-  .contact-title{
-    font-size:56px; font-weight:800; margin:0 0 18px 0;
-    background: linear-gradient(90deg,var(--accent1),var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    color: transparent;
-  }
+    .contact-title {
+      font-size: 56px;
+      font-weight: 800;
+      margin: 0 0 18px 0;
+      background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
 
-  .contact-sub{
-    color:var(--muted); font-size:20px; margin-bottom:28px;
-  }
+    .contact-sub {
+      color: var(--muted);
+      font-size: 20px;
+      margin-bottom: 28px;
+    }
 
-  /* social icons row (big circles) */
-  .social-row{display:flex;gap:22px;justify-content:center;align-items:center;margin-bottom:26px;flex-wrap:wrap}
-  .social-btn{
-    width:92px;height:92px;border-radius:999px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;
-    box-shadow:inset 0 -6px 18px rgba(0,0,0,0.25);transition:transform .22s, box-shadow .22s;
-    border:1px solid rgba(255,255,255,0.02);
-  }
-  .social-btn:hover{transform:translateY(-8px) scale(1.03);box-shadow:0 20px 50px rgba(2,6,23,0.6)}
-  .social-icon{width:40px;height:40px;display:block;fill:var(--text);opacity:0.96}
+    /* social icons row (big circles) */
+    .social-row {
+      display: flex;
+      gap: 22px;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 26px;
+      flex-wrap: wrap
+    }
 
-  /* footer block style like image */
-  .contact-footer{
-    background:#060607;padding:36px 20px;margin-top:18px;border-top:1px solid rgba(255,255,255,0.02);
-    text-align:center;color:var(--muted);
-  }
-  .contact-footer h4{color:var(--text);font-weight:700;margin:0 0 18px 0}
-  .tiny-icons{display:flex;gap:14px;justify-content:center;margin-top:18px;align-items:center}
-  .tiny-btn{width:36px;height:36px;border-radius:8px;background:transparent;display:flex;align-items:center;justify-content:center; border:1px solid rgba(255,255,255,0.04)}
-  .tiny-icon{width:18px;height:18px;fill:var(--text)}
+    .social-btn {
+      width: 92px;
+      height: 92px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 -6px 18px rgba(0, 0, 0, 0.25);
+      transition: transform .22s, box-shadow .22s;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
 
-  /* responsive tweaks */
-  @media (max-width:980px){
-    .hero{grid-template-columns:1fr;gap:18px}
-    .projects-grid{grid-template-columns:1fr}
-    .two-col{grid-template-columns:1fr}
-    .social-btn{width:72px;height:72px}
-    .contact-title{font-size:44px}
-  }
-  @media (max-width:520px){
-    .contact-title{font-size:36px}
-    .social-btn{width:64px;height:64px}
-    .social-icon{width:28px;height:28px}
-  }
+    .social-btn:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 50px rgba(2, 6, 23, 0.6)
+    }
 
-  /* Project modal (single copy) */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    padding-top: 50px;
-    left: 0; top: 0;
-    width: 100%; height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.7);
-  }
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      display: block;
+      fill: var(--text);
+      opacity: 0.96
+    }
 
-  .modal-content {
-    background: var(--bg2);
-    margin: auto;
-    padding: 20px;
-    border-radius: 12px;
-    max-width: 700px;
-    color: var(--text);
-  }
+    /* footer block style like image */
+    .contact-footer {
+      background: #060607;
+      padding: 36px 20px;
+      margin-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.02);
+      text-align: center;
+      color: var(--muted);
+    }
 
-  .close {
-    color: var(--muted);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .close:hover {
-    color: var(--accent-main);
-  }
+    .contact-footer h4 {
+      color: var(--text);
+      font-weight: 700;
+      margin: 0 0 18px 0
+    }
 
-  /* simple hide class for the blur wrapper */
-  .hide-blur {
-    display: none !important;
-  }
+    .tiny-icons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 18px;
+      align-items: center
+    }
 
-.hide-blur {
-  display: none !important;
-}
+    .tiny-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.04)
+    }
 
-</style>
+    .tiny-icon {
+      width: 18px;
+      height: 18px;
+      fill: var(--text)
+    }
+
+    /* responsive tweaks */
+    @media (max-width:980px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr
+      }
+
+      .two-col {
+        grid-template-columns: 1fr
+      }
+
+      .social-btn {
+        width: 72px;
+        height: 72px
+      }
+
+      .contact-title {
+        font-size: 44px
+      }
+    }
+
+    @media (max-width:520px) {
+      .contact-title {
+        font-size: 36px
+      }
+
+      .social-btn {
+        width: 64px;
+        height: 64px
+      }
+
+      .social-icon {
+        width: 28px;
+        height: 28px
+      }
+    }
+
+    /* Project modal (single copy) */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 50px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-content {
+      background: var(--bg2);
+      margin: auto;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 700px;
+      color: var(--text);
+    }
+
+    .close {
+      color: var(--muted);
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .close:hover {
+      color: var(--accent-main);
+    }
+
+    /* simple hide class for the blur wrapper */
+    .hide-blur {
+      display: none !important;
+    }
+
+    .hide-blur {
+      display: none !important;
+    }
+  </style>
 </head>
+
 <body>
 
   <!-- wrapper for blurred elements + particles -->
   <div id="blur-header">
     <!-- subtle decorative blobs -->
-    <div style="position:fixed;left:-120px;top:-60px;width:320px;height:320px;border-radius:999px;filter:blur(36px);background:linear-gradient(90deg,var(--accent-main),var(--accent-alt));opacity:0.6;z-index:2"></div>
+    <div
+      style="position:fixed;left:-120px;top:-60px;width:320px;height:320px;border-radius:999px;filter:blur(36px);background:linear-gradient(90deg,var(--accent-main),var(--accent-alt));opacity:0.6;z-index:2">
+    </div>
 
     <!-- particle canvas (light) -->
-    <canvas id="particles" style="position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0.12"></canvas>
+    <canvas id="particles"
+      style="position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:0.12"></canvas>
   </div>
 
   <!-- NAV -->
   <!-- NAV -->
-<!-- NAV -->
-<header>
-  <div class="brand">
-    <div class="logo">
-      <div class="frame">
-        <img src="Assets/Vigneshwarphoto.jpg" alt="Vigneshwar Photo">
+  <!-- NAV -->
+  <header>
+    <div class="brand">
+      <div class="logo">
+        <div class="frame">
+          <img src="Assets/Vigneshwarphoto.jpg" alt="Vigneshwar Photo">
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:800">Vigneshwar M</div>
+        <div style="font-size:12px;color:var(--muted)">Full Stack Developer • Software Curious</div>
       </div>
     </div>
-    <div>
-      <div style="font-weight:800">Vigneshwar M</div>
-      <div style="font-size:12px;color:var(--muted)">Full Stack Developer • Software Curious</div>
-    </div>
-  </div>
 
 
-<style>
-.frame {
-    width: 120px;  /* Adjust based on your design */
-    height: 65px;
-    padding: 4px;
-    background: linear-gradient(to bottom, #0d47a1, #673ab7);
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
-.frame img {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-}
-</style>
+
+
+    <style>
+      .frame {
+        width: 120px;
+        /* Adjust based on your design */
+        height: 65px;
+        padding: 4px;
+        background: linear-gradient(to bottom, #0d47a1, #673ab7);
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .frame img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      /* Hide header when modal is open */
+      .hide-header {
+        display: none !important;
+      }
+    </style>
 
 
 
     <nav>
-       <a href="#about" class="nav-link slide-underline">About</a>
-       <a href="#about" class="nav-link slide-underline">Skills</a>
-       <a href="#projects" class="nav-link slide-underline">Projects</a>
-       <a href="#certs" class="nav-link slide-underline">Certifications</a>
-       <a href="#contact" class="nav-link slide-underline">Contact</a>
+      <a href="#about" class="nav-link slide-underline">About</a>
+      <a href="#about" class="nav-link slide-underline">Skills</a>
+      <a href="#projects" class="nav-link slide-underline">Projects</a>
+      <a href="#certs" class="nav-link slide-underline">Certifications</a>
+      <a href="#contact" class="nav-link slide-underline">Contact</a>
     </nav>
   </header>
 
@@ -268,29 +561,59 @@
     <!-- HERO -->
     <section id="home" class="hero">
       <div>
-        <span class="eyebrow">Open to roles • Actively learning software</span>
+        <span class="eyebrow">Open to roles • Full Stack Developer</span>
         <h1>Bridging infra & software Writing clean code</h1>
-        <p class="lead">I’m Vigneshwar M — an Electronics and Communication Engineering graduate with hands-on experience in embedded systems, Sensor Integration and IoT. Bridging embedded systems and full-stack development to create real-world solutions. I build small, reliable tools and document everything. I like pragmatic solutions that scale.</p>
+        <p class="lead">
+          Full Stack Developer with hands-on experience building end-to-end, production-ready web applications using
+          React, Node.js, Express, MongoDB, and MySQL. Proven ability to deliver responsive UIs, robust APIs, and
+          scalable data workflows through internships and real-world projects.
+        </p>
 
-        <div class="cta">
-          <a class="btn primary" href="https://drive.google.com/file/d/1k5swYswbatYHPpix44ppBT_6XeMk-ZzN/view?usp=sharing" download>📄 Download Resume</a>
+        <div class="cta" style="margin-top:40px">
+          <a class="btn primary"
+            href="https://drive.google.com/file/d/1k5swYswbatYHPpix44ppBT_6XeMk-ZzN/view?usp=sharing" download>📄
+            Download Resume</a>
           <a class="btn" href="#projects">View Projects</a>
         </div>
 
-        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
-          <div class="skill">Front-end Development</div>
-          <div class="skill">Django</div>
-          <div class="skill">Python</div>
-          <div class="skill">Embedded</div>
+        <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+          <!-- Frontend -->
+          <div class="skill">HTML5</div>
+          <div class="skill">CSS3</div>
+          <div class="skill">JavaScript (ES6+)</div>
+          <div class="skill">React.js</div>
+          <div class="skill">Tailwind CSS</div>
+          <div class="skill">Material UI</div>
+          <div class="skill">Figma</div>
+
+          <!-- Backend & Databases -->
+          <div class="skill">Node.js</div>
+          <div class="skill">Express.js</div>
           <div class="skill">MongoDB</div>
+          <div class="skill">MySQL</div>
+          <div class="skill">Firebase</div>
+
+          <!-- Tools & APIs -->
+          <div class="skill">REST APIs</div>
+          <div class="skill">Git</div>
+          <div class="skill">GitHub</div>
+          <div class="skill">Postman</div>
+          <div class="skill">Thunder Client</div>
+          <div class="skill">DBeaver</div>
+
+          <!-- Programming & CS -->
+          <div class="skill">Python</div>
+          <div class="skill">OOP</div>
           <div class="skill">DSA</div>
+
         </div>
+
       </div>
 
       <aside class="hero-card">
         <div class="avatar">
           <!-- Profile Picture -->
-          <img src="Assets/namma-photo.jpg" >
+          <img src="Assets/namma-photo.jpg" alt="Vigneshwar M Photo">
         </div>
         <div class="meta">
           <div>
@@ -306,24 +629,36 @@
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="reveal">
+    <section id="about" class="reveal" style="margin-top: 30px;">
       <div class="two-col">
         <div>
           <h2>About</h2>
           <div class="section-card">
-            <p style="color:var(--muted)">I’m Vigneshwar M — part problem-solver, part tech tinkerer.
-I build things that talk, think, and react — from voice-controlled medical devices to terrain-smart EV controllers.
-Whether it’s Python scripts, IoT prototypes, or full-stack apps, I turn ideas into tools that work in the real world.
-When I’m not debugging, you’ll find me experimenting with new tech stacks or improving old projects — because good enough is never good enough.</p>
-</p>
-
-
+            <p style="color:var(--muted)">
+              Full Stack Developer with hands-on experience building end-to-end, production-ready web applications using
+              modern JavaScript frameworks and backend technologies. I’ve worked across the stack to deliver responsive
+              user interfaces, robust APIs, and scalable data-driven systems through internships and real-world
+              projects. With a strong foundation in Electronics and Communication Engineering, embedded systems, and
+              IoT, I bring a practical, system-oriented approach to solving real-world engineering problems.
+            </p>
 
             <h3 style="margin-top:14px">Experience highlights</h3>
             <ul style="color:var(--muted);margin:8px 0 0 18px">
-              <li>Intern — Embedded & IoT at <b>Enthu Technology Solutions</b> — sensors, dashboards, automation features.</li>
-              <li>Network fundamentals (VLAN, LoRa, OSPF, BGP), exposure to Embedded Firmwares, Sensors Integration & monitoring tools.</li>
-              <li>Python automation scripts for device backups and health checks.</li>
+              <li>
+                Full Stack Developer Intern at <b>Frontial Technologies Pvt. Ltd.</b> — contributing to end-to-end
+                development using the MERN stack by building and enhancing production-ready features, improving
+                application scalability, and strengthening backend reliability. Worked on data harvesting systems and
+                the Inbox.ai platform, delivering responsive frontend components, robust APIs, optimized data flows, and
+                supporting Agentic AI workflows through dataset preparation and iterative testing.
+              </li>
+              <li>
+                Internship – MERN Stack Development at <b>SmartBridge Educational Services</b> — built responsive
+                full-stack applications, applied REST API design, and worked with real-world deployment workflows.
+              </li>
+              <li>
+                Embedded & IoT Intern at <b>Enthu Technology Solutions</b> — gained hands-on experience with embedded
+                systems, sensor integration, automation logic, and cloud-connected dashboards.
+              </li>
             </ul>
           </div>
         </div>
@@ -332,30 +667,132 @@ When I’m not debugging, you’ll find me experimenting with new tech stacks or
           <h2>Skills</h2>
           <div class="section-card" style="display:flex;flex-direction:column;gap:12px">
             <div class="skills">
+              <div class="skill">HTML5</div>
+              <div class="skill">CSS3</div>
+              <div class="skill">JavaScript (ES6+)</div>
+              <div class="skill">React.js</div>
+              <div class="skill">Tailwind CSS</div>
+              <div class="skill">Material UI</div>
+              <div class="skill">Node.js</div>
+              <div class="skill">Express.js</div>
+              <div class="skill">MongoDB</div>
+              <div class="skill">MySQL</div>
+              <div class="skill">Firebase</div>
               <div class="skill">Python</div>
               <div class="skill">C</div>
-              <div class="skill">HTML/CSS/JS</div>
-              <div class="skill">Microsoft Azure</div>
-              <div class="skill">Git</div>
-              <div class="skill">Backend Development</div>
-              <div class="skill">Embedded Programming</div>
+              <div class="skill">DSA</div>
+              <div class="skill">Git & GitHub</div>
+              <div class="skill">REST APIs</div>
+              <div class="skill">Postman</div>
+              <div class="skill">DBeaver</div>
+              <div class="skill">Embedded Systems</div>
+              <div class="skill">Arduino IDE</div>
+              <div class="skill">Bluetooth Communication</div>
+              <div class="skill">LabVIEW</div>
             </div>
 
             <div style="margin-top:6px;color:var(--muted);font-weight:700">Education</div>
-            <div style="font-weight:800">B.E. — Electronics & Communication</div>
+            <div style="font-weight:800">B.E. — Electronics & Communication Engineering</div>
             <div style="color:var(--muted);font-size:13px">Sri Ramakrishna Engineering College — 2021–2025</div>
           </div>
         </aside>
       </div>
     </section>
 
+
     <!-- PROJECTS -->
     <section id="projects" class="reveal">
       <h2>Projects</h2>
       <div style="margin-top:14px" class="projects-grid">
         <!-- >>> EDIT: COPY THIS BLOCK to add more projects -->
-       <article class="card project-card" data-modal="factorysafetyModal">
-          <img src="Assets/factory safety.jpg" style="border-radius:8px; margin-bottom:12px;">
+
+
+        <article class="card project-card" data-modal="AutoTranscribeX">
+          <img src="Assets/AutoTranscribe.webp" style="border-radius:8px; margin-bottom:12px;" alt="AutoTranscribeX">
+          <h3>AutoTranscribeX</h3>
+          <p style="color:var(--muted)"></p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="skill" style="padding:6px 10px;font-size:13px">React</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Node and Express.js</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Postman</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">PM2</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Tailwind CSS</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Whisper</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">OpenAi Router</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Vosk</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Virtual Environment Variables</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">LibreTranslate</span>
+          </div>
+        </article>
+
+        <article class="card project-card" data-modal="EzyVet">
+          <img src="Assets/EzyVet.avif" style="border-radius:8px; margin-bottom:12px;" alt="EzyVet">
+          <h3>EzyVet</h3>
+          <p style="color:var(--muted)"></p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="skill" style="padding:6px 10px;font-size:13px">React</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Node and Express.js</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Postman</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Frontend</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Tailwind CSS</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">MySQL</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">MongoDB</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Git</span>
+          </div>
+        </article>
+
+
+        <article class="card project-card" data-modal="Beecroft">
+          <img src="Assets/Beecroft.jpg" style="border-radius:8px; margin-bottom:12px;" alt="Beecroft">
+          <h3>Beecroft</h3>
+          <p style="color:var(--muted)"></p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="skill" style="padding:6px 10px;font-size:13px">React</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Hooks</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">node.js</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Material UI</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Tailwind CSS</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">MongoDB</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Git</span>
+          </div>
+        </article>
+
+
+        <article class="card project-card" data-modal="Inbox.ai">
+          <img src="Assets/Inbox.gif" style="border-radius:8px; margin-bottom:12px;" alt="Inbox.ai">
+          <h3>Inbox.ai</h3>
+          <p style="color:var(--muted)"></p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="skill" style="padding:6px 10px;font-size:13px">React</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Node</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">MySQL</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Frontend</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">TMDB</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Git & Github</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Redis</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Agentic AI</span>
+          </div>
+        </article>
+
+
+        <article class="card project-card" data-modal="NetflixModal">
+          <img src="Assets/netflix.jpg" style="border-radius:8px; margin-bottom:12px;" alt="Netflix Clone">
+          <h3>Netflix clone</h3>
+          <p style="color:var(--muted)"></p>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+            <span class="skill" style="padding:6px 10px;font-size:13px">Javascript</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">HTML</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Tailwind CSS</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Firebase</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">TMDB</span>
+            <span class="skill" style="padding:6px 10px;font-size:13px">Git</span>
+          </div>
+        </article>
+
+
+        <article class="card project-card" data-modal="factorysafetyModal">
+          <img src="Assets/factory safety.jpg" style="border-radius:8px; margin-bottom:12px;"
+            alt="Factory Safety System">
           <h3>Intelligent factory safety and emergency response system using LabVIEW</h3>
           <p style="color:var(--muted)"></p>
           <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
@@ -366,7 +803,8 @@ When I’m not debugging, you’ll find me experimenting with new tech stacks or
         </article>
 
         <article class="card project-card" data-modal="voice-controlledModal">
-          <img src="Assets/Voicecontrol.gif" style="border-radius:8px; margin-bottom:12px;">
+          <img src="Assets/Voicecontrol.gif" style="border-radius:8px; margin-bottom:12px;"
+            alt="Voice Controlled Syringe Infusion Pump">
           <h3>Voice Control Based Syringe Infusion Pump</h3>
           <p style="color:var(--muted)"></p>
           <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
@@ -378,24 +816,343 @@ When I’m not debugging, you’ll find me experimenting with new tech stacks or
         </article>
 
         <article class="card project-card" data-modal="SpeedControlModal">
-          <img src="Assets/Sensor.webp"  style="border-radius:8px; margin-bottom:12px;">
+          <img src="Assets/Sensor.webp" style="border-radius:8px; margin-bottom:12px;"
+            alt="Automatic Speed Control in EV's">
           <h3>Automatic Speed Control in EV’s</h3>
           <p style="color:var(--muted)">
             <span class="skill" style="padding:6px 10px;font-size:13px">Sensory Evaluation</span>
             <span class="skill" style="padding:6px 10px;font-size:13px"> Circuit Analysis</span>
             <span class="skill" style="padding:6px 10px;font-size:13px">DC motor</span>
             <span class="skill" style="padding:6px 10px;font-size:13px"> Circuit Testing </span>
-          </div>
-        </article>
+      </div>
+      </article>
 
       </div>
     </section>
 
     <!-- modal moved OUTSIDE of the projects section -->
+
+
+    <div id="AutoTranscribeX" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('AutoTranscribeX')">&times;</span>
+
+        <img src="Assets/AutoTranscribe.webp" alt="AutoTranscribeX" style="border-radius:8px; margin-bottom:20px;">
+
+        <h2>AutoTranscribeX – Automated Speech-to-Text Platform</h2>
+
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill" style="padding:6px 10px;font-size:13px">React.js</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Node.js</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Express.js</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Whisper</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Vosk</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">LibreTranslate</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">PM2</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Postman</span>
+        </div>
+
+        <p>
+          AutoTranscribeX is a full-stack web application designed to automate speech-to-text
+          transcription for audio inputs. The platform focuses on accuracy, multilingual
+          support, and seamless frontend-backend integration for real-world usability.
+        </p>
+
+        <p>
+          <strong>Technical Contributions:</strong><br>
+          • Built a responsive <strong>React.js frontend</strong> with Tailwind CSS to handle
+          audio uploads, transcription status, and output display.<br>
+          • Developed <strong>backend APIs</strong> using Node.js and Express.js to process audio
+          files and manage transcription workflows.<br>
+          • Integrated <strong>Whisper</strong> and <strong>Vosk</strong> speech-to-text engines
+          to support accurate transcription across different audio inputs.<br>
+          • Implemented <strong>LibreTranslate</strong> for multilingual translation of
+          transcribed text, improving accessibility for non-English users.<br>
+          • Managed environment-specific configurations using <strong>virtual environment
+            variables</strong> for secure and scalable deployment.<br>
+          • Used <strong>Postman</strong> for API testing and <strong>PM2</strong> for process
+          management to ensure reliable backend performance.
+        </p>
+
+        <p>
+          <strong>Impact:</strong> Delivered a production-ready transcription system capable of
+          converting audio to text efficiently, supporting multiple languages, and maintaining
+          stable performance under real-world usage scenarios.
+        </p>
+
+        <p>
+          🎙️ A practical speech-to-text solution built with scalability, reliability, and
+          real-world deployment in mind.
+        </p>
+
+        <h4>Key Skills:</h4>
+        <ul>
+          <li>React.js & Responsive UI Development</li>
+          <li>Node.js, Express.js & REST API Design</li>
+          <li>Speech-to-Text Integration (Whisper, Vosk)</li>
+          <li>Multilingual Translation (LibreTranslate)</li>
+          <li>Deployment, PM2 & API Testing (Postman)</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <div id="EzyVet" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('EzyVet')">&times;</span>
+
+        <img src="Assets/EzyVet.avif" alt="EzyVet" style="border-radius:8px; margin-bottom:20px;">
+
+        <h2>EzyVet – Veterinary Management Web Application</h2>
+
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill" style="padding:6px 10px;font-size:13px">React.js</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Node.js</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Express.js</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">MongoDB</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">MySQL</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">REST APIs</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Git</span>
+        </div>
+
+        <p>
+          EzyVet is a full-stack web application designed to streamline veterinary clinic
+          operations by digitizing appointment management, pet records, and service workflows.
+          The system focuses on usability, data consistency, and scalable backend design.
+        </p>
+
+        <p>
+          <strong>Technical Contributions:</strong><br>
+          • Developed responsive and intuitive <strong>frontend components</strong> using React,
+          ensuring smooth navigation and clean UI interactions.<br>
+          • Built and integrated <strong>RESTful APIs</strong> using Node.js and Express.js to handle
+          appointments, user records, and service data.<br>
+          • Implemented <strong>MongoDB and MySQL</strong> for structured and unstructured data
+          storage, enabling efficient querying and reliable data management.<br>
+          • Tested APIs using <strong>Postman</strong> and handled error states to improve system
+          stability and robustness.<br>
+          • Used <strong>Git</strong> for version control and collaborated on feature development
+          following industry-standard workflows.
+        </p>
+
+        <p>
+          <strong>Impact:</strong> Delivered a production-ready veterinary management system that
+          improves operational efficiency, reduces manual record-keeping, and provides a
+          scalable foundation for real-world clinic usage.
+        </p>
+
+        <p>
+          🐾 A practical full-stack application built with real-world business workflows in mind.
+        </p>
+
+        <h4>Key Skills:</h4>
+        <ul>
+          <li>React.js & Component-Driven UI Development</li>
+          <li>Node.js, Express.js & REST API Design</li>
+          <li>MongoDB & MySQL Database Integration</li>
+          <li>API Testing & Debugging (Postman)</li>
+          <li>Git-Based Collaboration & Deployment Practices</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <div id="Beecroft" class="modal" aria-hidden="true">
+  <div class="modal-content" role="dialog" aria-modal="true">
+    <span class="close" onclick="closeProjectModal('Beecroft')">&times;</span>
+
+    <img src="Assets/Beecroft.jpg" alt="Beecroft" style="border-radius:8px; margin-bottom:20px;">
+
+    <h2>Beecroft – Full Stack Web Application</h2>
+
+    <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+      <span class="skill" style="padding:6px 10px;font-size:13px">React.js</span>
+      <span class="skill" style="padding:6px 10px;font-size:13px">Node.js</span>
+      <span class="skill" style="padding:6px 10px;font-size:13px">Express.js</span>
+      <span class="skill" style="padding:6px 10px;font-size:13px">MongoDB</span>
+      <span class="skill" style="padding:6px 10px;font-size:13px">Material UI</span>
+      <span class="skill" style="padding:6px 10px;font-size:13px">Tailwind CSS</span>
+      <span class="skill" style="padding:6px 10px;font-size:13px">Git</span>
+    </div>
+
+    <p>
+      Beecroft is a full-stack web application focused on delivering a clean, responsive,
+      and user-friendly experience backed by a scalable backend architecture. The project
+      emphasizes component-based UI design, efficient API communication, and structured
+      data handling.
+    </p>
+
+    <p>
+      <strong>Technical Contributions:</strong><br>
+      • Built reusable and responsive <strong>React.js components</strong> using Hooks,
+        Material UI, and Tailwind CSS to ensure consistent UI behavior across devices.<br>
+      • Developed <strong>backend services</strong> using Node.js and Express.js to manage
+        application logic and RESTful API communication.<br>
+      • Integrated <strong>MongoDB</strong> for efficient data storage, retrieval, and
+        schema design aligned with application workflows.<br>
+      • Implemented clean state management and component structure to improve maintainability
+        and scalability.<br>
+      • Used <strong>Git</strong> for version control and followed structured development
+        workflows during feature implementation and testing.
+    </p>
+
+    <p>
+      <strong>Impact:</strong> Delivered a stable, production-ready full-stack application
+      with a modern UI, reliable backend services, and a scalable data layer suitable for
+      real-world usage.
+    </p>
+
+    <p>
+      🧩 A practical full-stack project focused on clean architecture, usability, and
+      maintainable code.
+    </p>
+
+    <h4>Key Skills:</h4>
+    <ul>
+      <li>React.js, Hooks & Component-Based Design</li>
+      <li>Node.js, Express.js & REST APIs</li>
+      <li>MongoDB & Backend Data Modeling</li>
+      <li>Material UI & Tailwind CSS</li>
+      <li>Git & Collaborative Development</li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+    <div id="Inbox.ai" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('Inbox.ai')">&times;</span>
+
+        <img src="Assets/Inbox.gif" alt="Inbox.ai" style="border-radius:8px; margin-bottom:20px;">
+
+        <h2>Inbox.ai – Intelligent Data Processing Platform</h2>
+
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill" style="padding:6px 10px;font-size:13px">React.js</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Node.js</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Express.js</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">MySQL</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">REST APIs</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Agentic AI</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Git</span>
+        </div>
+
+        <p>
+          Inbox.ai is a production-grade data processing and intelligence platform developed
+          during my internship at <strong>Frontial Technologies Pvt. Ltd.</strong>.
+          The system focuses on extracting, processing, and organizing structured data through
+          scalable full-stack workflows.
+        </p>
+
+        <p>
+          <strong>Technical Contributions:</strong><br>
+          • Built and enhanced <strong>frontend modules</strong> using React to deliver responsive,
+          user-friendly interfaces for data visualization and interaction.<br>
+          • Developed and optimized <strong>backend APIs</strong> using Node.js and Express.js to
+          handle structured data ingestion, transformation, and retrieval.<br>
+          • Integrated <strong>MySQL</strong> for reliable data storage, query optimization, and
+          efficient data flow across services.<br>
+          • Contributed to <strong>Agentic AI workflows</strong> by assisting in dataset preparation,
+          annotation pipelines, preprocessing, and iterative testing.<br>
+          • Debugged production issues, improved API performance, and collaborated with senior
+          developers to deliver stable, maintainable features.
+        </p>
+
+        <p>
+          <strong>Impact:</strong> Strengthened system reliability, improved data-processing
+          efficiency, and delivered production-ready features that supported real-world
+          business workflows in a live environment.
+        </p>
+
+        <p>
+          📥 A real-world platform where full-stack engineering meets intelligent automation.
+        </p>
+
+        <h4>Key Skills:</h4>
+        <ul>
+          <li>React.js & Component-Based UI Development</li>
+          <li>Node.js, Express.js & REST API Design</li>
+          <li>MySQL Database Integration & Optimization</li>
+          <li>Agentic AI Workflow Support</li>
+          <li>Debugging, Performance Optimization & Git</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+    <div id="NetflixModal" class="modal" aria-hidden="true">
+      <div class="modal-content" role="dialog" aria-modal="true">
+        <span class="close" onclick="closeProjectModal('NetflixModal')">&times;</span>
+
+        <img src="Assets/netflix.jpg" alt="Netflix Clone" style="border-radius:8px; margin-bottom:20px;">
+
+        <h2>Netflix Clone – VelvetAfterHours</h2>
+
+        <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
+          <span class="skill" style="padding:6px 10px;font-size:13px">JavaScript</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">React</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Tailwind CSS</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Firebase</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">TMDB API</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">OpenAI API</span>
+          <span class="skill" style="padding:6px 10px;font-size:13px">Git</span>
+        </div>
+
+        <p>
+          VelvetAfterHours is a Netflix-style streaming web application built to deliver a
+          smooth, responsive, and intelligent movie-browsing experience. The platform focuses
+          on clean UI, fast rendering, and personalized content discovery.
+        </p>
+
+        <p>
+          <strong>Technical Contributions:</strong><br>
+          • Designed and developed a fully responsive streaming UI using <strong>React</strong> and
+          <strong>Tailwind CSS</strong>, ensuring seamless navigation across devices.<br>
+          • Integrated the <strong>TMDB API</strong> to fetch real-time movie data, categories,
+          and metadata dynamically.<br>
+          • Implemented <strong>Firebase Authentication</strong> for secure user sign-in and session
+          management.<br>
+          • Integrated <strong>OpenAI API</strong> to generate personalized movie recommendations,
+          enhancing user engagement and content discovery.<br>
+          • Deployed the application on cloud hosting with production-ready configuration for
+          performance and scalability.
+        </p>
+
+        <p>
+          <strong>Impact:</strong> Delivered a high-performance, Netflix-like streaming experience
+          with intelligent recommendations, modern UI design, and reliable backend integration —
+          closely simulating real-world production applications.
+        </p>
+
+        <p>
+          🎬 A streaming platform that blends design, performance, and AI-driven personalization.
+        </p>
+
+        <h4>Key Skills:</h4>
+        <ul>
+          <li>React.js & JavaScript (ES6+)</li>
+          <li>Tailwind CSS & Responsive UI Design</li>
+          <li>API Integration (TMDB, OpenAI)</li>
+          <li>Firebase Authentication</li>
+          <li>Git & Deployment Workflows</li>
+        </ul>
+      </div>
+    </div>
+
+
+
+
+
     <div id="factorysafetyModal" class="modal" aria-hidden="true">
       <div class="modal-content" role="dialog" aria-modal="true">
         <span class="close" onclick="closeProjectModal('agricultureModal')">&times;</span>
-        <img src="Assets/factory safety.jpg" alt="Agriculture Information Exchange" style="border-radius:8px; margin-bottom:20px;">
+        <img src="Assets/factory safety.jpg" alt="Agriculture Information Exchange"
+          style="border-radius:8px; margin-bottom:20px;">
         <h2>Intelligent factory safety and emergency response system using LabVIEW</h2>
         <div style="margin:10px 0; display:flex; gap:10px; flex-wrap:wrap;">
           <span class="skill">Machine Learning</span>
@@ -403,28 +1160,34 @@ When I’m not debugging, you’ll find me experimenting with new tech stacks or
           <span class="skill">PIL</span>
         </div>
         <p>
-  <br>
-             In the era of Industry 4.0, unplanned machine downtime is costly — both in time and safety.  
-  I engineered a machine learning-powered predictive maintenance solution that not only 
-  forecasts equipment performance trends but also actively prevents accidents through automated safety responses.
-</p>
+          <br>
+          In the era of Industry 4.0, unplanned machine downtime is costly — both in time and safety.
+          I engineered a machine learning-powered predictive maintenance solution that not only
+          forecasts equipment performance trends but also actively prevents accidents through automated safety
+          responses.
+        </p>
 
-<p>
-  <strong> Technical Contributions:</strong><br>
-  • Data-Driven Forecasting – Developed a predictive model using <strong>Facebook Prophet</strong> to analyze historical and real-time sensor data from factory machinery.<br>
-  • High-Accuracy Predictions – Achieved 96.6% forecasting accuracy in identifying performance degradation and maintenance needs before failures occurred.<br>
-  • Industrial IoT Integration – Connected edge devices and sensors for continuous data streaming to the central analysis system.<br>
-  • Interactive LabVIEW Dashboard – Designed a real-time visualization interface displaying current machine status, predicted trends, and risk alerts.<br>
-  • Automated Safety Mechanisms – Implemented logic to trigger immediate equipment shutdown and send multi-channel alerts to on-site personnel upon detecting hazardous anomalies.
-</p>
+        <p>
+          <strong> Technical Contributions:</strong><br>
+          • Data-Driven Forecasting – Developed a predictive model using <strong>Facebook Prophet</strong> to analyze
+          historical and real-time sensor data from factory machinery.<br>
+          • High-Accuracy Predictions – Achieved 96.6% forecasting accuracy in identifying performance degradation and
+          maintenance needs before failures occurred.<br>
+          • Industrial IoT Integration – Connected edge devices and sensors for continuous data streaming to the central
+          analysis system.<br>
+          • Interactive LabVIEW Dashboard – Designed a real-time visualization interface displaying current machine
+          status, predicted trends, and risk alerts.<br>
+          • Automated Safety Mechanisms – Implemented logic to trigger immediate equipment shutdown and send
+          multi-channel alerts to on-site personnel upon detecting hazardous anomalies.
+        </p>
 
-<p>
-  <strong>Impact:</strong> Enabled proactive maintenance that reduced unexpected downtime, 
-  safeguarded worker safety, and demonstrated how AI + Industrial Automation can create 
-  smarter, self-protecting factory environments.
-</p>
+        <p>
+          <strong>Impact:</strong> Enabled proactive maintenance that reduced unexpected downtime,
+          safeguarded worker safety, and demonstrated how AI + Industrial Automation can create
+          smarter, self-protecting factory environments.
+        </p>
 
-<p>💡 From predicting failures to preventing disasters — automation that cares for both machines and people.</p>
+        <p>💡 From predicting failures to preventing disasters — automation that cares for both machines and people.</p>
 
         <h4>Key Skills:</h4>
         <ul>
@@ -447,23 +1210,30 @@ When I’m not debugging, you’ll find me experimenting with new tech stacks or
           <span class="skill">Voltage Regulators</span>
         </div>
         <p>
-          
-<p>Imagine a healthcare device that listens, understands, and acts instantly—that’s exactly what I built.</p>
-This voice-enabled syringe infusion pump automates precise drug delivery, reducing manual intervention by 70% and significantly improving patient safety.
 
-<p>I engineered the entire system from microcontroller logic to mobile app interface:</p>
+        <p>Imagine a healthcare device that listens, understands, and acts instantly—that’s exactly what I built.</p>
+        This voice-enabled syringe infusion pump automates precise drug delivery, reducing manual intervention by 70%
+        and significantly improving patient safety.
 
-<p>System Architecture – Defined requirements for a medical-grade infusion device with microcontroller-based control for accuracy and reliability.</p>
+        <p>I engineered the entire system from microcontroller logic to mobile app interface:</p>
 
-<p>Custom Android App – Built using MIT App Inventor, enabling healthcare staff to send voice commands via Bluetooth for real-time operation.</p>
-<p>Embedded Firmware – Programmed on Arduino to process commands and drive the syringe motor with millimeter precision.</p>
-<p>Wireless Communication – Integrated Bluetooth modules for instant feedback and secure, low-latency control.</p>
-<p>Rigorous Testing – Conducted functional and stress tests, ensuring the device performs under extended operation without failure.</p>
+        <p>System Architecture – Defined requirements for a medical-grade infusion device with microcontroller-based
+          control for accuracy and reliability.</p>
+
+        <p>Custom Android App – Built using MIT App Inventor, enabling healthcare staff to send voice commands via
+          Bluetooth for real-time operation.</p>
+        <p>Embedded Firmware – Programmed on Arduino to process commands and drive the syringe motor with millimeter
+          precision.</p>
+        <p>Wireless Communication – Integrated Bluetooth modules for instant feedback and secure, low-latency control.
+        </p>
+        <p>Rigorous Testing – Conducted functional and stress tests, ensuring the device performs under extended
+          operation without failure.</p>
 
 
-<p>Impact: Reduced manual workload, minimized human error, and demonstrated the potential of IoT + voice technology in next-gen medical devices.</p>
+        <p>Impact: Reduced manual workload, minimized human error, and demonstrated the potential of IoT + voice
+          technology in next-gen medical devices.</p>
 
-Because in healthcare, every second counts—and so does every drop.
+        Because in healthcare, every second counts—and so does every drop.
         <h4>Key Skills:</h4>
         <ul>
           <li> Arduino UNO</li>
@@ -484,55 +1254,89 @@ Because in healthcare, every second counts—and so does every drop.
           <span class="skill">Circuit Testing</span>
         </div>
         <p>
-          <p>
-  Why should a driver constantly adjust speed when the vehicle can do it smarter? I developed an 
-  intelligent EV control system that automatically adjusts motor speed based on road slope, 
-  enhancing <strong>safety</strong>, <strong>efficiency</strong>, and <strong>battery life</strong>.
-</p>
+        <p>
+          Why should a driver constantly adjust speed when the vehicle can do it smarter? I developed an
+          intelligent EV control system that automatically adjusts motor speed based on road slope,
+          enhancing <strong>safety</strong>, <strong>efficiency</strong>, and <strong>battery life</strong>.
+        </p>
 
-<p>
-  <strong>What I built:</strong><br>
-  <br>
-  • Real-Time Slope Detection – Used tilt sensors to monitor road inclination with high accuracy.<br>
-  • Smart Control Logic – Programmed Arduino to process sensor data and instantly adjust motor speed 
-    for optimal performance uphill, downhill, or on flat roads.<br>
-  • Manual Override App – Created an Android app with Bluetooth connectivity for drivers to take 
-    control when needed.<br>
-  • On-Road Validation – Conducted real-world tests confirming rapid response, smooth acceleration/
-    deceleration, and reliable hardware–app communication.
-</p>
+        <p>
+          <strong>What I built:</strong><br>
+          <br>
+          • Real-Time Slope Detection – Used tilt sensors to monitor road inclination with high accuracy.<br>
+          • Smart Control Logic – Programmed Arduino to process sensor data and instantly adjust motor speed
+          for optimal performance uphill, downhill, or on flat roads.<br>
+          • Manual Override App – Created an Android app with Bluetooth connectivity for drivers to take
+          control when needed.<br>
+          • On-Road Validation – Conducted real-world tests confirming rapid response, smooth acceleration/
+          deceleration, and reliable hardware–app communication.
+        </p>
 
-<p>
-  <strong>Impact:</strong> Improved driving safety by reducing the risk of overspeeding on slopes, optimized energy usage, 
-  and showcased how sensor fusion + embedded control can make EVs smarter.
-</p>
+        <p>
+          <strong>Impact:</strong> Improved driving safety by reducing the risk of overspeeding on slopes, optimized
+          energy usage,
+          and showcased how sensor fusion + embedded control can make EVs smarter.
+        </p>
 
-<p> Because the road changes — your speed should too.</p>
+        <p> Because the road changes — your speed should too.</p>
 
-        
+
         <ul>
         </ul>
       </div>
     </div>
 
     <!-- CERTIFICATIONS -->
-    <section id="certs" class="reveal">
-      <h2>Certifications</h2>
-      <div class="section-card" style="margin-top:12px">
-        <ul style="color:var(--muted);margin:0 0 0 18px">
-          <li>Python Programming — Infosys Springboard</li>
-          <li>C++ Programming — Infosys Springboard</li>
-          <li>Introduction to HTML — Sololearn</li>
-          <li>IoT Development — Enthu Technology</li>
-          <li>Image Processing — MathWorks</li>
-          <li>MS Excel — Excel Champs</li>
-          <li>Connected Cars & Automation Systems — Krish Tech</li>
-        </ul>
-      </div>
-    </section>
+<section id="certs" class="reveal" style="margin-top:180px;">
+  <h2>Credentials & Achievements</h2>
+
+  <div class="section-card certs-achievements">
+
+    <!-- CERTIFICATIONS -->
+    <div class="block">
+      <h3 class="block-title">Certifications</h3>
+      <ul class="clean-list">
+        <li><b>Python Programming</b> — Infosys Springboard</li>
+        <li><b>Introduction to HTML</b> — Sololearn</li>
+        <li><b>Advanced React</b> — Coursera</li>
+        <li><b>Full Stack Development</b> — freeCodeCamp</li>
+        <li><b>MongoDB Associate Developer</b> — MongoDB</li>
+        <li><b>MySQL for Developers</b> — Oracle / MySQL</li>
+      </ul>
+    </div>
+
+    <!-- ACHIEVEMENTS -->
+    <div class="block">
+      <h3 class="block-title">Achievements</h3>
+      <ul class="clean-list">
+        <li>
+          Presented and published an <b>IoT-based Intelligent Factory Safety Project</b> at
+          <b>SREC Innovate ’23</b>, demonstrating real-time monitoring, predictive safety, and
+          automated response systems.
+        </li>
+        <li>
+          Secured <b>2nd Place</b> at a technical event conducted by
+          <b>Karpagam College of Engineering</b> for innovative IoT integration and real-time automation design.
+        </li>
+        <li>
+          Solved <b>70+ Data Structures & Algorithms</b> problems on LeetCode,
+          strengthening algorithmic thinking through consistent practice.
+        </li>
+        <li>
+          Successfully completed a <b>4-week Embedded & IoT Internship</b> at
+          <b>Enthu Technology Solutions Pvt. Ltd.</b>, gaining hands-on experience in
+          embedded systems, sensor integration, and cloud connectivity.
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+
 
     <!-- CONTACT (styled to match the screenshot you gave) -->
-    <section id="contact" class="reveal">
+    <section id="contact" class="reveal" style="margin-top: 220px;">
       <div class="contact-wrap">
         <h2 class="contact-title">Get In Touch</h2>
         <p class="contact-sub">Let's connect and create something amazing together!</p>
@@ -540,15 +1344,24 @@ Because in healthcare, every second counts—and so does every drop.
         <div class="social-row">
           <a class="social-btn" href="https://www.linkedin.com/in/vickyyyyyyy/" target="_blank" aria-label="LinkedIn">
             <!-- LinkedIn SVG -->
-            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5V24H0V8zm7.5 0h4.8v2.2h.07c.67-1.26 2.31-2.6 4.76-2.6 5.09 0 6 3.34 6 7.66V24h-5v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.76 1.87-2.76 3.8V24h-5V8z"/></svg>
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5V24H0V8zm7.5 0h4.8v2.2h.07c.67-1.26 2.31-2.6 4.76-2.6 5.09 0 6 3.34 6 7.66V24h-5v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.76 1.87-2.76 3.8V24h-5V8z" />
+            </svg>
           </a>
 
           <a class="social-btn" href="https://github.com/Vigneshwar16" target="_blank" aria-label="GitHub">
-            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .5C5.65.5.5 5.66.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.38-3.88-1.38-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.17-3.09-.12-.29-.51-1.47.11-3.06 0 0 .95-.31 3.12 1.17.9-.25 1.86-.38 2.82-.38.96 0 1.92.13 2.82.38 2.17-1.48 3.12-1.17 3.12-1.17.62 1.59.23 2.77.11 3.06.73.81 1.17 1.83 1.17 3.09 0 4.43-2.71 5.41-5.29 5.69.41.35.77 1.04.77 2.1 0 1.52-.01 2.76-.01 3.13 0 .3.21.66.79.55C20.71 21.4 24 17.09 24 12 24 5.66 18.84.5 12 .5z"/></svg>
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 .5C5.65.5.5 5.66.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.38-3.88-1.38-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.25 3.33.96.1-.75.4-1.25.73-1.54-2.56-.29-5.26-1.28-5.26-5.7 0-1.26.45-2.28 1.17-3.09-.12-.29-.51-1.47.11-3.06 0 0 .95-.31 3.12 1.17.9-.25 1.86-.38 2.82-.38.96 0 1.92.13 2.82.38 2.17-1.48 3.12-1.17 3.12-1.17.62 1.59.23 2.77.11 3.06.73.81 1.17 1.83 1.17 3.09 0 4.43-2.71 5.41-5.29 5.69.41.35.77 1.04.77 2.1 0 1.52-.01 2.76-.01 3.13 0 .3.21.66.79.55C20.71 21.4 24 17.09 24 12 24 5.66 18.84.5 12 .5z" />
+            </svg>
           </a>
 
           <a class="social-btn" href="mailto:vigneshwarvigneshwar67@gmail.com" aria-label="Email">
-            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M20 4H4c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
           </a>
         </div>
 
@@ -557,8 +1370,12 @@ Because in healthcare, every second counts—and so does every drop.
           <div style="margin-top:12px">© <span id="year">2025</span> All Rights Reserved</div>
 
           <div class="tiny-icons" style="margin-top:12px">
-            <a class="tiny-btn" href="https://www.linkedin.com/in/vickyyyyyyy/" target="_blank" aria-label="LinkedIn small">
-              <svg class="tiny-icon" viewBox="0 0 24 24"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5V24H0V8zm7.5 0h4.8v2.2h.07c.67-1.26 2.31-2.6 4.76-2.6 5.09 0 6 3.34 6 7.66V24h-5v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.76 1.87-2.76 3.8V24h-5V8z"/></svg>
+            <a class="tiny-btn" href="https://www.linkedin.com/in/vickyyyyyyy/" target="_blank"
+              aria-label="LinkedIn small">
+              <svg class="tiny-icon" viewBox="0 0 24 24">
+                <path
+                  d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5V24H0V8zm7.5 0h4.8v2.2h.07c.67-1.26 2.31-2.6 4.76-2.6 5.09 0 6 3.34 6 7.66V24h-5v-7.2c0-1.72-.03-3.94-2.4-3.94-2.4 0-2.76 1.87-2.76 3.8V24h-5V8z" />
+              </svg>
             </a>
           </div>
         </div>
@@ -579,69 +1396,69 @@ Because in healthcare, every second counts—and so does every drop.
     if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     // smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
         const t = document.querySelector(a.getAttribute('href'));
-        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
     });
 
     // nav active (intersection observer)
     const sections = document.querySelectorAll('main section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
           navLinks.forEach(n => n.classList.toggle('active', n.getAttribute('href') === '#' + entry.target.id));
         }
       });
-    }, {threshold:0.45});
-    sections.forEach(s=>obs.observe(s));
+    }, { threshold: 0.45 });
+    sections.forEach(s => obs.observe(s));
 
     // reveal (simple intersection observer)
     const revealEls = document.querySelectorAll('.reveal');
-    const rObs = new IntersectionObserver((entries, observer)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('show'); observer.unobserve(e.target); }
+    const rObs = new IntersectionObserver((entries, observer) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('show'); observer.unobserve(e.target); }
       });
-    }, {threshold:0.12});
-    revealEls.forEach(r=>rObs.observe(r));
+    }, { threshold: 0.12 });
+    revealEls.forEach(r => rObs.observe(r));
 
     // tiny particle canvas (subtle) - invoked IIFE
-    (function(){
+    (function () {
       const canvas = document.getElementById('particles');
-      if(!canvas) return;
+      if (!canvas) return;
       const ctx = canvas.getContext('2d');
       let w = canvas.width = innerWidth, h = canvas.height = innerHeight;
       let parts = [];
-      function init(){
+      function init() {
         parts = [];
-        const N = Math.max(12, Math.floor((w*h)/180000));
-        for(let i=0;i<N;i++){
+        const N = Math.max(12, Math.floor((w * h) / 180000));
+        for (let i = 0; i < N; i++) {
           parts.push({
-            x: Math.random()*w,
-            y: Math.random()*h,
-            r: Math.random()*1.6+0.2,
-            vx: (Math.random()-0.5)*0.2,
-            vy: (Math.random()-0.5)*0.07,
-            a: Math.random()*0.12+0.02
+            x: Math.random() * w,
+            y: Math.random() * h,
+            r: Math.random() * 1.6 + 0.2,
+            vx: (Math.random() - 0.5) * 0.2,
+            vy: (Math.random() - 0.5) * 0.07,
+            a: Math.random() * 0.12 + 0.02
           });
         }
       }
-      function resize(){ w = canvas.width = innerWidth; h = canvas.height = innerHeight; init(); }
+      function resize() { w = canvas.width = innerWidth; h = canvas.height = innerHeight; init(); }
       addEventListener('resize', resize);
       init();
-      function draw(){
-        ctx.clearRect(0,0,w,h);
-        for(const p of parts){
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        for (const p of parts) {
           p.x += p.vx; p.y += p.vy;
-          if(p.x < 0) p.x = w;
-          if(p.x > w) p.x = 0;
-          if(p.y < 0) p.y = h;
-          if(p.y > h) p.y = 0;
+          if (p.x < 0) p.x = w;
+          if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h;
+          if (p.y > h) p.y = 0;
           ctx.beginPath();
-          ctx.fillStyle = 'rgba(255,255,255,'+p.a+')';
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+          ctx.fillStyle = 'rgba(255,255,255,' + p.a + ')';
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
           ctx.fill();
         }
         requestAnimationFrame(draw);
@@ -652,199 +1469,200 @@ Because in healthcare, every second counts—and so does every drop.
     // modal open/close and toggle blur wrapper
     function openProjectModal(id) {
       const modal = document.getElementById(id);
-      if(!modal) return;
+      if (!modal) return;
       modal.style.display = 'block';
       const blur = document.getElementById('blur-header');
-      if(blur) blur.classList.add('hide-blur');
+      if (blur) blur.classList.add('hide-blur');
     }
 
     function closeProjectModal(id) {
       const modal = document.getElementById(id);
-      if(!modal) return;
+      if (!modal) return;
       modal.style.display = 'none';
       const blur = document.getElementById('blur-header');
-      if(blur) blur.classList.remove('hide-blur');
+      if (blur) blur.classList.remove('hide-blur');
     }
 
     // Close modal when clicking outside and also remove blur
-    window.addEventListener('click', function(event) {
+    window.addEventListener('click', function (event) {
       document.querySelectorAll('.modal').forEach(modal => {
         if (event.target === modal) {
           modal.style.display = "none";
           const blur = document.getElementById('blur-header');
-          if(blur) blur.classList.remove('hide-blur');
+          if (blur) blur.classList.remove('hide-blur');
         }
       });
     });
 
     // also close on ESC (nice-to-have)
-    window.addEventListener('keydown', function(e){
-      if(e.key === "Escape"){
+    window.addEventListener('keydown', function (e) {
+      if (e.key === "Escape") {
         document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
         const blur = document.getElementById('blur-header');
-        if(blur) blur.classList.remove('hide-blur');
+        if (blur) blur.classList.remove('hide-blur');
       }
     });
   </script>
   <script>
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
 
-  // helper safe-get
-  const $ = id => document.getElementById(id);
+      // helper safe-get
+      const $ = id => document.getElementById(id);
 
-  // attach click handlers to project cards by data attribute
-  document.querySelectorAll('.project-card[data-modal]').forEach(card => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', (e) => {
-      const modalId = card.getAttribute('data-modal');
-      console.log('[DEBUG] project card clicked, modalId=', modalId);
-      openProjectModal(modalId);
+      // attach click handlers to project cards by data attribute
+      document.querySelectorAll('.project-card[data-modal]').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', (e) => {
+          const modalId = card.getAttribute('data-modal');
+          console.log('[DEBUG] project card clicked, modalId=', modalId);
+          openProjectModal(modalId);
+        });
+      });
+
+      // attach close handlers (for cross icon)
+      document.querySelectorAll('.modal .close').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const modal = btn.closest('.modal');
+          if (modal) {
+            closeProjectModal(modal.id);
+          }
+        });
+      });
+
     });
-  });
 
-  // attach close handlers (for cross icon)
-  document.querySelectorAll('.modal .close').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const modal = btn.closest('.modal');
-      if (modal) {
-        closeProjectModal(modal.id);
+    // open modal (debug)
+    function openProjectModal(id) {
+      try {
+        const modal = document.getElementById(id);
+        if (!modal) { console.error('[DEBUG] openProjectModal: modal not found for id=', id); return; }
+        modal.style.display = 'block';
+        console.log('[DEBUG] modal opened:', id);
+
+        const blur = document.getElementById('blur-header');
+        if (blur) {
+          blur.classList.add('hide-blur');
+          console.log('[DEBUG] blur-header hidden');
+        } else {
+          console.warn('[DEBUG] blur-header element not found');
+        }
+
+        // move focus into modal for accessibility
+        const focusEl = modal.querySelector('.modal-content') || modal;
+        if (focusEl) focusEl.setAttribute('tabindex', '-1'), focusEl.focus();
+
+      } catch (err) {
+        console.error('[DEBUG] openProjectModal error:', err);
+      }
+    }
+
+    // close modal (debug)
+    function closeProjectModal(id) {
+      try {
+        const modal = document.getElementById(id);
+        if (!modal) { console.error('[DEBUG] closeProjectModal: modal not found for id=', id); return; }
+        modal.style.display = 'none';
+        console.log('[DEBUG] modal closed:', id);
+
+        const blur = document.getElementById('blur-header');
+        if (blur) {
+          blur.classList.remove('hide-blur');
+          console.log('[DEBUG] blur-header restored');
+        }
+      } catch (err) {
+        console.error('[DEBUG] closeProjectModal error:', err);
+      }
+    }
+
+    // clicking outside modal closes it and restores blur
+    window.addEventListener('click', (event) => {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+          const blur = document.getElementById('blur-header');
+          if (blur) blur.classList.remove('hide-blur');
+          console.log('[DEBUG] modal closed by outside click, id=', modal.id);
+        }
+      });
+    });
+
+    // ESC key closes modals
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        const blur = document.getElementById('blur-header');
+        if (blur) blur.classList.remove('hide-blur');
+        console.log('[DEBUG] ESC pressed - all modals closed');
       }
     });
-  });
+  </script>
 
-});
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-// open modal (debug)
-function openProjectModal(id) {
-  try {
-    const modal = document.getElementById(id);
-    if (!modal) { console.error('[DEBUG] openProjectModal: modal not found for id=', id); return; }
-    modal.style.display = 'block';
-    console.log('[DEBUG] modal opened:', id);
+      // helper function for ID
+      const $ = id => document.getElementById(id);
 
-    const blur = document.getElementById('blur-header');
-    if (blur) {
-      blur.classList.add('hide-blur');
-      console.log('[DEBUG] blur-header hidden');
-    } else {
-      console.warn('[DEBUG] blur-header element not found');
-    }
+      // attach click handlers to project cards
+      document.querySelectorAll('.project-card[data-modal]').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+          const modalId = card.getAttribute('data-modal');
+          openProjectModal(modalId);
+        });
+      });
 
-    // move focus into modal for accessibility
-    const focusEl = modal.querySelector('.modal-content') || modal;
-    if (focusEl) focusEl.setAttribute('tabindex','-1'), focusEl.focus();
+      // attach close handlers (X icon in modal)
+      document.querySelectorAll('.modal .close').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const modal = btn.closest('.modal');
+          if (modal) closeProjectModal(modal.id);
+        });
+      });
 
-  } catch (err) {
-    console.error('[DEBUG] openProjectModal error:', err);
-  }
-}
+    });
 
-// close modal (debug)
-function closeProjectModal(id) {
-  try {
-    const modal = document.getElementById(id);
-    if (!modal) { console.error('[DEBUG] closeProjectModal: modal not found for id=', id); return; }
-    modal.style.display = 'none';
-    console.log('[DEBUG] modal closed:', id);
+    // open modal and hide blur
+    function openProjectModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
+      modal.style.display = 'block';
 
-    const blur = document.getElementById('blur-header');
-    if (blur) {
-      blur.classList.remove('hide-blur');
-      console.log('[DEBUG] blur-header restored');
-    }
-  } catch (err) {
-    console.error('[DEBUG] closeProjectModal error:', err);
-  }
-}
-
-// clicking outside modal closes it and restores blur
-window.addEventListener('click', (event) => {
-  document.querySelectorAll('.modal').forEach(modal => {
-    if (event.target === modal) {
-      modal.style.display = 'none';
       const blur = document.getElementById('blur-header');
-      if (blur) blur.classList.remove('hide-blur');
-      console.log('[DEBUG] modal closed by outside click, id=', modal.id);
+      if (blur) blur.classList.add('hide-blur');
     }
-  });
-});
 
-// ESC key closes modals
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
-    const blur = document.getElementById('blur-header');
-    if (blur) blur.classList.remove('hide-blur');
-    console.log('[DEBUG] ESC pressed - all modals closed');
-  }
-});
-</script>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-
-  // helper function for ID
-  const $ = id => document.getElementById(id);
-
-  // attach click handlers to project cards
-  document.querySelectorAll('.project-card[data-modal]').forEach(card => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', () => {
-      const modalId = card.getAttribute('data-modal');
-      openProjectModal(modalId);
-    });
-  });
-
-  // attach close handlers (X icon in modal)
-  document.querySelectorAll('.modal .close').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const modal = btn.closest('.modal');
-      if (modal) closeProjectModal(modal.id);
-    });
-  });
-
-});
-
-// open modal and hide blur
-function openProjectModal(id) {
-  const modal = document.getElementById(id);
-  if (!modal) return;
-  modal.style.display = 'block';
-
-  const blur = document.getElementById('blur-header');
-  if (blur) blur.classList.add('hide-blur');
-}
-
-// close modal and show blur
-function closeProjectModal(id) {
-  const modal = document.getElementById(id);
-  if (!modal) return;
-  modal.style.display = 'none';
-
-  const blur = document.getElementById('blur-header');
-  if (blur) blur.classList.remove('hide-blur');
-}
-
-// close modal when clicking outside
-window.addEventListener('click', (event) => {
-  document.querySelectorAll('.modal').forEach(modal => {
-    if (event.target === modal) {
+    // close modal and show blur
+    function closeProjectModal(id) {
+      const modal = document.getElementById(id);
+      if (!modal) return;
       modal.style.display = 'none';
+
       const blur = document.getElementById('blur-header');
       if (blur) blur.classList.remove('hide-blur');
     }
-  });
-});
 
-// close modal with ESC key
-window.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
-    const blur = document.getElementById('blur-header');
-    if (blur) blur.classList.remove('hide-blur');
-  }
-});
-</script>
+    // close modal when clicking outside
+    window.addEventListener('click', (event) => {
+      document.querySelectorAll('.modal').forEach(modal => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+          const blur = document.getElementById('blur-header');
+          if (blur) blur.classList.remove('hide-blur');
+        }
+      });
+    });
+
+    // close modal with ESC key
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.modal').forEach(m => m.style.display = 'none');
+        const blur = document.getElementById('blur-header');
+        if (blur) blur.classList.remove('hide-blur');
+      }
+    });
+  </script>
 
 </body>
+
 </html>
